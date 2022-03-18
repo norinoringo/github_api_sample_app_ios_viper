@@ -99,13 +99,13 @@
 		862BF86227E3FDE40056A45B /* github_api_sample_app_ios_viper */ = {
 			isa = PBXGroup;
 			children = (
-				862BF86327E3FDE40056A45B /* AppDelegate.swift */,
-				862BF86527E3FDE40056A45B /* SceneDelegate.swift */,
-				862BF86727E3FDE40056A45B /* ViewController.swift */,
-				862BF86927E3FDE40056A45B /* Main.storyboard */,
-				862BF86C27E3FDE60056A45B /* Assets.xcassets */,
-				862BF86E27E3FDE60056A45B /* LaunchScreen.storyboard */,
-				862BF87127E3FDE60056A45B /* Info.plist */,
+				862BF89327E420680056A45B /* Application */,
+				862BF89527E420F00056A45B /* Data */,
+				862BF89627E421080056A45B /* Domain */,
+				862BF89A27E4214E0056A45B /* Extensions */,
+				862BF89B27E4217A0056A45B /* FrameWork */,
+				862BF89C27E421910056A45B /* NetWork */,
+				862BF89427E420C70056A45B /* Scenes */,
 			);
 			path = github_api_sample_app_ios_viper;
 			sourceTree = "<group>";
@@ -125,6 +125,126 @@
 				862BF88627E3FDE60056A45B /* github_api_sample_app_ios_viperUITestsLaunchTests.swift */,
 			);
 			path = github_api_sample_app_ios_viperUITests;
+			sourceTree = "<group>";
+		};
+		862BF89327E420680056A45B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				862BF87127E3FDE60056A45B /* Info.plist */,
+				862BF86327E3FDE40056A45B /* AppDelegate.swift */,
+				862BF86527E3FDE40056A45B /* SceneDelegate.swift */,
+				862BF86C27E3FDE60056A45B /* Assets.xcassets */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		862BF89427E420C70056A45B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				862BF86727E3FDE40056A45B /* ViewController.swift */,
+				862BF86927E3FDE40056A45B /* Main.storyboard */,
+				862BF86E27E3FDE60056A45B /* LaunchScreen.storyboard */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		862BF89527E420F00056A45B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		862BF89627E421080056A45B /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				862BF89727E421280056A45B /* Entity */,
+				862BF89827E421310056A45B /* Repository */,
+				862BF89927E4213B0056A45B /* UseCase */,
+				862BF8A127E46BEA0056A45B /* ValueObject */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		862BF89727E421280056A45B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		862BF89827E421310056A45B /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		862BF89927E4213B0056A45B /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		862BF89A27E4214E0056A45B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		862BF89B27E4217A0056A45B /* FrameWork */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FrameWork;
+			sourceTree = "<group>";
+		};
+		862BF89C27E421910056A45B /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				862BF89D27E4219B0056A45B /* API */,
+				862BF89E27E421A70056A45B /* APIClient */,
+				862BF89F27E421B50056A45B /* Request */,
+				862BF8A027E421CB0056A45B /* Response */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		862BF89D27E4219B0056A45B /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		862BF89E27E421A70056A45B /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		862BF89F27E421B50056A45B /* Request */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		862BF8A027E421CB0056A45B /* Response */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		862BF8A127E46BEA0056A45B /* ValueObject */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ValueObject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
