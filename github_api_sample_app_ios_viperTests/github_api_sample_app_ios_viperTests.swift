@@ -1,12 +1,3 @@
-//
-// MARK: - Constants
-// MARK: - Variables
-// MARK: - ViewLifeCycle
-// MARK: - Private Methods
-// MARK: - Public Methods
-// MARK: - Delegate Methods
-
-
 import XCTest
 @testable import github_api_sample_app_ios_viper
 

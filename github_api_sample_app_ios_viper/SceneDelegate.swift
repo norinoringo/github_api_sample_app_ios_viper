@@ -1,12 +1,3 @@
-//
-// MARK: - Constants
-// MARK: - Variables
-// MARK: - ViewLifeCycle
-// MARK: - Private Methods
-// MARK: - Public Methods
-// MARK: - Delegate Methods
-
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
