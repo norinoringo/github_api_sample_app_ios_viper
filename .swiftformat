@@ -1,3 +1,8 @@
+# format options
+--indent tab
+
+# file options
 --exclude Pods,Carthage
 
+# rules
 --stripunusedargs closure-only
