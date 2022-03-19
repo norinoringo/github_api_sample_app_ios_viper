@@ -101,7 +101,6 @@
 				D387E6A2EEAA0DD431A54A62 /* Pods-github_api_sample_app_ios_viperUITests.debug.xcconfig */,
 				43B0348ACE120610705A4F32 /* Pods-github_api_sample_app_ios_viperUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -296,6 +295,7 @@
 			buildConfigurationList = 862BF88A27E3FDE60056A45B /* Build configuration list for PBXNativeTarget "github_api_sample_app_ios_viper" */;
 			buildPhases = (
 				9AD6CA765FDA5B86D8A98709 /* [CP] Check Pods Manifest.lock */,
+				862BF8A327E587130056A45B /* Run SwiftFormat */,
 				862BF85C27E3FDE40056A45B /* Sources */,
 				862BF85D27E3FDE40056A45B /* Frameworks */,
 				862BF85E27E3FDE40056A45B /* Resources */,
@@ -476,6 +476,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-github_api_sample_app_ios_viper/Pods-github_api_sample_app_ios_viper-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		862BF8A327E587130056A45B /* Run SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftFormat";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\"\n";
 		};
 		9AD6CA765FDA5B86D8A98709 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
