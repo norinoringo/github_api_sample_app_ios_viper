@@ -1,6 +1,6 @@
 import XCTest
 
-class github_api_sample_app_ios_viperUITestsLaunchTests: XCTestCase {
+class GithubapisampleappiosviperUITestsLaunchTests: XCTestCase {
 	override class var runsForEachTargetApplicationUIConfiguration: Bool {
 		true
 	}
