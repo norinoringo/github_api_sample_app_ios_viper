@@ -517,6 +517,7 @@
 		};
 		862BF8A527E592970056A45B /* Run R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
