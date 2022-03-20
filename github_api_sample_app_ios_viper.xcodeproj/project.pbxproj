@@ -296,6 +296,7 @@
 			buildPhases = (
 				9AD6CA765FDA5B86D8A98709 /* [CP] Check Pods Manifest.lock */,
 				862BF8A327E587130056A45B /* Run SwiftFormat */,
+				862BF8A527E592970056A45B /* Run R.swift */,
 				862BF85C27E3FDE40056A45B /* Sources */,
 				862BF85D27E3FDE40056A45B /* Frameworks */,
 				862BF85E27E3FDE40056A45B /* Resources */,
@@ -513,6 +514,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		862BF8A527E592970056A45B /* Run R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = "Run R.swift";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		9AD6CA765FDA5B86D8A98709 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
