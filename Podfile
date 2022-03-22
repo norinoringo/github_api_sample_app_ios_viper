@@ -8,6 +8,7 @@ def install_pods
  # CocoaPodsで入れたライブラリのWarningを消す
  inhibit_all_warnings!
 
+ pod 'XCGLogger', '~> 7.0.1'
  pod 'SwiftFormat/CLI'
  pod 'SwiftLint'
  pod 'R.swift'
