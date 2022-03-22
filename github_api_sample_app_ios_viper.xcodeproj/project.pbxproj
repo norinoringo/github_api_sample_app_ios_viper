@@ -18,6 +18,8 @@
 		862BF87B27E3FDE60056A45B /* github_api_sample_app_ios_viperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF87A27E3FDE60056A45B /* github_api_sample_app_ios_viperTests.swift */; };
 		862BF88527E3FDE60056A45B /* github_api_sample_app_ios_viperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF88427E3FDE60056A45B /* github_api_sample_app_ios_viperUITests.swift */; };
 		862BF88727E3FDE60056A45B /* github_api_sample_app_ios_viperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF88627E3FDE60056A45B /* github_api_sample_app_ios_viperUITestsLaunchTests.swift */; };
+		862BF8A727E75ADA0056A45B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF8A627E75ADA0056A45B /* R.generated.swift */; };
+		862BF8A927E9472B0056A45B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 862BF8A827E9472B0056A45B /* Localizable.strings */; };
 		F0C2D3725831C8534C4AA8A0 /* Pods_github_api_sample_app_ios_viperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77679E23B8C333B8267D0440 /* Pods_github_api_sample_app_ios_viperTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		862BF88027E3FDE60056A45B /* github_api_sample_app_ios_viperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = github_api_sample_app_ios_viperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		862BF88427E3FDE60056A45B /* github_api_sample_app_ios_viperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = github_api_sample_app_ios_viperUITests.swift; sourceTree = "<group>"; };
 		862BF88627E3FDE60056A45B /* github_api_sample_app_ios_viperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = github_api_sample_app_ios_viperUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		862BF8A627E75ADA0056A45B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		862BF8A827E9472B0056A45B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		885F53DEEB6FC9CBBBD09982 /* Pods-github_api_sample_app_ios_viperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viperTests.release.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viperTests/Pods-github_api_sample_app_ios_viperTests.release.xcconfig"; sourceTree = "<group>"; };
 		A51CF0CA4C37FCDC276427BA /* Pods-github_api_sample_app_ios_viper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viper.release.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viper/Pods-github_api_sample_app_ios_viper.release.xcconfig"; sourceTree = "<group>"; };
 		D387E6A2EEAA0DD431A54A62 /* Pods-github_api_sample_app_ios_viperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viperUITests.debug.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viperUITests/Pods-github_api_sample_app_ios_viperUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				862BF87127E3FDE60056A45B /* Info.plist */,
+				862BF8A827E9472B0056A45B /* Localizable.strings */,
+				862BF8A627E75ADA0056A45B /* R.generated.swift */,
 				862BF89327E420680056A45B /* AppMangement */,
 				862BF89527E420F00056A45B /* Data */,
 				862BF89627E421080056A45B /* Domain */,
@@ -296,6 +302,7 @@
 			buildPhases = (
 				9AD6CA765FDA5B86D8A98709 /* [CP] Check Pods Manifest.lock */,
 				862BF8A327E587130056A45B /* Run SwiftFormat */,
+				862BF8A527E592970056A45B /* Run R.swift */,
 				862BF85C27E3FDE40056A45B /* Sources */,
 				862BF85D27E3FDE40056A45B /* Frameworks */,
 				862BF85E27E3FDE40056A45B /* Resources */,
@@ -400,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				862BF87027E3FDE60056A45B /* LaunchScreen.storyboard in Resources */,
+				862BF8A927E9472B0056A45B /* Localizable.strings in Resources */,
 				862BF86D27E3FDE60056A45B /* Assets.xcassets in Resources */,
 				862BF86B27E3FDE40056A45B /* Main.storyboard in Resources */,
 			);
@@ -514,6 +522,26 @@
 			shellPath = /bin/sh;
 			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		862BF8A527E592970056A45B /* Run R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run R.swift";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		9AD6CA765FDA5B86D8A98709 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -585,6 +613,7 @@
 				862BF86827E3FDE40056A45B /* ViewController.swift in Sources */,
 				862BF86427E3FDE40056A45B /* AppDelegate.swift in Sources */,
 				862BF86627E3FDE40056A45B /* SceneDelegate.swift in Sources */,
+				862BF8A727E75ADA0056A45B /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 --indent tab
 
 # file options
---exclude Pods,Carthage
+--exclude Pods,Carthage,R.generated.swift
 
 # rules
 --stripunusedargs closure-only
