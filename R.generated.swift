@@ -89,15 +89,24 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 1 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
   struct storyboard {
     /// Storyboard `Splash`.
     static let splash = _R.storyboard.splash()
+    /// Storyboard `Top`.
+    static let top = _R.storyboard.top()
 
     #if os(iOS) || os(tvOS)
     /// `UIStoryboard(name: "Splash", bundle: ...)`
     static func splash(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.splash)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "Top", bundle: ...)`
+    static func top(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.top)
     }
     #endif
 
@@ -187,6 +196,9 @@ struct _R: Rswift.Validatable {
       #if os(iOS) || os(tvOS)
       try splash.validate()
       #endif
+      #if os(iOS) || os(tvOS)
+      try top.validate()
+      #endif
     }
 
     #if os(iOS) || os(tvOS)
@@ -195,6 +207,22 @@ struct _R: Rswift.Validatable {
 
       let bundle = R.hostingBundle
       let name = "Splash"
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct top: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = TopViewController
+
+      let bundle = R.hostingBundle
+      let name = "Top"
 
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {

@@ -1,14 +1,14 @@
 import Foundation
 import UIKit
 
-protocol SplashRouter {
+protocol TopRouter {
     func gotoTop()
 }
 
-class SplashRouterImpl: SplashRouter {
-    let viewController: SplashViewController
+class TopRouterImpl: TopRouter {
+    let viewController: TopViewController
 
-    init(view: SplashViewController) {
+    init(view: TopViewController) {
         viewController = view
     }
 
