@@ -17,7 +17,7 @@ import UIKit
 class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		print("aaa")
 		// Do any additional setup after loading the view.
+		log.debug("画面起動")
 	}
 }
