@@ -1,11 +1,7 @@
 import UIKit
 import XCGLogger
 
-let log: XCGLogger = {
-	let logger = XCGLogger.default
-	logger.setup(level: .verbose, showThreadName: false, showLevel: false, showFileNames: true, showLineNumbers: true)
-	return logger
-}()
+let log = XCGLogger.default
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,5 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Called when the user discards a scene session.
 		// If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
 		// Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+	}
+}
+
+extension AppDelegate {
+	func initXCGLogger() {
+		log.setup(level: .verbose, showThreadName: false, showLevel: false, showFileNames: true, showLineNumbers: true)
 	}
 }
