@@ -16,7 +16,7 @@ class {{ module_info.name }}ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Log.info("{{ module_info.name }}画面起動")
+        log.debug("{{ module_info.name }}画面起動")
 
         presenter.didFinishPrepare()
     }
