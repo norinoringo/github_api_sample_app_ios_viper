@@ -1,4 +1,11 @@
 import UIKit
+import XCGLogger
+
+let log: XCGLogger = {
+	let logger = XCGLogger.default
+	logger.setup(level: .verbose, showThreadName: false, showLevel: false, showFileNames: true, showLineNumbers: true)
+	return logger
+}()
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
