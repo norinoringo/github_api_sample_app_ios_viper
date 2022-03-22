@@ -298,11 +298,11 @@
 		8A02DAEF995A647DA15C8FDC /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				16C243434D4EF57ADDAAB632 /* SplashViewController.swift */,
+				862BF8AC27E9C8CE0056A45B /* Splash.storyboard */,
+				B12E1E4DCF57141486259166 /* SplashConfigurator.swift */,
 				5D817F8431D5897D1583F035 /* SplashPresenter.swift */,
 				A7C8AA3919E69D8734847A58 /* SplashRouter.swift */,
-				B12E1E4DCF57141486259166 /* SplashConfigurator.swift */,
-				862BF8AC27E9C8CE0056A45B /* Splash.storyboard */,
+				16C243434D4EF57ADDAAB632 /* SplashViewController.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
