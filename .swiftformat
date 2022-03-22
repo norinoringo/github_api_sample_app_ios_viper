@@ -1,5 +1,4 @@
 # format options
---indent tab
 
 # file options
 --exclude Pods,Carthage,R.generated.swift
