@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0198CF0D8F1064564513A48F /* Pods_github_api_sample_app_ios_viperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F696813D8A2153057194AA /* Pods_github_api_sample_app_ios_viperUITests.framework */; };
+		01E7EE0438C2B924B31A71E3 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C243434D4EF57ADDAAB632 /* SplashViewController.swift */; };
 		0DA4DC0BD4E57247522D6332 /* Pods_github_api_sample_app_ios_viper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3C3F786AB1BF935F504414 /* Pods_github_api_sample_app_ios_viper.framework */; };
+		2B8B64DCF1A0800FD7151BCD /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12E1E4DCF57141486259166 /* SplashConfigurator.swift */; };
+		80231ADD70E013831C0F0E91 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8AA3919E69D8734847A58 /* SplashRouter.swift */; };
 		862BF86427E3FDE40056A45B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF86327E3FDE40056A45B /* AppDelegate.swift */; };
 		862BF86627E3FDE40056A45B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF86527E3FDE40056A45B /* SceneDelegate.swift */; };
 		862BF86827E3FDE40056A45B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF86727E3FDE40056A45B /* ViewController.swift */; };
@@ -20,6 +23,7 @@
 		862BF88727E3FDE60056A45B /* github_api_sample_app_ios_viperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF88627E3FDE60056A45B /* github_api_sample_app_ios_viperUITestsLaunchTests.swift */; };
 		862BF8A727E75ADA0056A45B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF8A627E75ADA0056A45B /* R.generated.swift */; };
 		862BF8A927E9472B0056A45B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 862BF8A827E9472B0056A45B /* Localizable.strings */; };
+		E607FE83EE68F41911C6FF1D /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D817F8431D5897D1583F035 /* SplashPresenter.swift */; };
 		F0C2D3725831C8534C4AA8A0 /* Pods_github_api_sample_app_ios_viperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77679E23B8C333B8267D0440 /* Pods_github_api_sample_app_ios_viperTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,8 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16C243434D4EF57ADDAAB632 /* SplashViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		24F696813D8A2153057194AA /* Pods_github_api_sample_app_ios_viperUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_github_api_sample_app_ios_viperUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43B0348ACE120610705A4F32 /* Pods-github_api_sample_app_ios_viperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viperUITests.release.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viperUITests/Pods-github_api_sample_app_ios_viperUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5D817F8431D5897D1583F035 /* SplashPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		6A3C3F786AB1BF935F504414 /* Pods_github_api_sample_app_ios_viper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_github_api_sample_app_ios_viper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77679E23B8C333B8267D0440 /* Pods_github_api_sample_app_ios_viperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_github_api_sample_app_ios_viperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81B8C690B1270A4E8DFF94D5 /* Pods-github_api_sample_app_ios_viperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viperTests.debug.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viperTests/Pods-github_api_sample_app_ios_viperTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +69,8 @@
 		862BF8A827E9472B0056A45B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		885F53DEEB6FC9CBBBD09982 /* Pods-github_api_sample_app_ios_viperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viperTests.release.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viperTests/Pods-github_api_sample_app_ios_viperTests.release.xcconfig"; sourceTree = "<group>"; };
 		A51CF0CA4C37FCDC276427BA /* Pods-github_api_sample_app_ios_viper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viper.release.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viper/Pods-github_api_sample_app_ios_viper.release.xcconfig"; sourceTree = "<group>"; };
+		A7C8AA3919E69D8734847A58 /* SplashRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		B12E1E4DCF57141486259166 /* SplashConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		D387E6A2EEAA0DD431A54A62 /* Pods-github_api_sample_app_ios_viperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viperUITests.debug.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viperUITests/Pods-github_api_sample_app_ios_viperUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E7CD96186100329A024E836A /* Pods-github_api_sample_app_ios_viper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viper.debug.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viper/Pods-github_api_sample_app_ios_viper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +198,7 @@
 				862BF86727E3FDE40056A45B /* ViewController.swift */,
 				862BF86927E3FDE40056A45B /* Main.storyboard */,
 				862BF86E27E3FDE60056A45B /* LaunchScreen.storyboard */,
+				8A02DAEF995A647DA15C8FDC /* Splash */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -291,6 +300,18 @@
 			children = (
 			);
 			path = ValueObject;
+			sourceTree = "<group>";
+		};
+		8A02DAEF995A647DA15C8FDC /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				16C243434D4EF57ADDAAB632 /* SplashViewController.swift */,
+				5D817F8431D5897D1583F035 /* SplashPresenter.swift */,
+				A7C8AA3919E69D8734847A58 /* SplashRouter.swift */,
+				B12E1E4DCF57141486259166 /* SplashConfigurator.swift */,
+			);
+			name = Splash;
+			path = Splash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -536,7 +557,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -614,6 +635,10 @@
 				862BF86427E3FDE40056A45B /* AppDelegate.swift in Sources */,
 				862BF86627E3FDE40056A45B /* SceneDelegate.swift in Sources */,
 				862BF8A727E75ADA0056A45B /* R.generated.swift in Sources */,
+				01E7EE0438C2B924B31A71E3 /* SplashViewController.swift in Sources */,
+				E607FE83EE68F41911C6FF1D /* SplashPresenter.swift in Sources */,
+				80231ADD70E013831C0F0E91 /* SplashRouter.swift in Sources */,
+				2B8B64DCF1A0800FD7151BCD /* SplashConfigurator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
