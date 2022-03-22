@@ -15,6 +15,10 @@ class SplashViewController: UIViewController {
 	// MARK: - UIViewController Methods
 
 	override func viewDidLoad() {
+		// スプラッシュ画面は最初の画面なのでviewDidLoadで初期化する
+		let configurator = SplashConfiguratorImpl()
+		configurator.configure(dependency: self)
+
 		super.viewDidLoad()
 		log.debug("Splash画面起動")
 

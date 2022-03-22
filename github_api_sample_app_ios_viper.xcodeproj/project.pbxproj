@@ -14,15 +14,13 @@
 		80231ADD70E013831C0F0E91 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8AA3919E69D8734847A58 /* SplashRouter.swift */; };
 		862BF86427E3FDE40056A45B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF86327E3FDE40056A45B /* AppDelegate.swift */; };
 		862BF86627E3FDE40056A45B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF86527E3FDE40056A45B /* SceneDelegate.swift */; };
-		862BF86827E3FDE40056A45B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF86727E3FDE40056A45B /* ViewController.swift */; };
-		862BF86B27E3FDE40056A45B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862BF86927E3FDE40056A45B /* Main.storyboard */; };
 		862BF86D27E3FDE60056A45B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 862BF86C27E3FDE60056A45B /* Assets.xcassets */; };
-		862BF87027E3FDE60056A45B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862BF86E27E3FDE60056A45B /* LaunchScreen.storyboard */; };
 		862BF87B27E3FDE60056A45B /* github_api_sample_app_ios_viperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF87A27E3FDE60056A45B /* github_api_sample_app_ios_viperTests.swift */; };
 		862BF88527E3FDE60056A45B /* github_api_sample_app_ios_viperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF88427E3FDE60056A45B /* github_api_sample_app_ios_viperUITests.swift */; };
 		862BF88727E3FDE60056A45B /* github_api_sample_app_ios_viperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF88627E3FDE60056A45B /* github_api_sample_app_ios_viperUITestsLaunchTests.swift */; };
 		862BF8A727E75ADA0056A45B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BF8A627E75ADA0056A45B /* R.generated.swift */; };
 		862BF8A927E9472B0056A45B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 862BF8A827E9472B0056A45B /* Localizable.strings */; };
+		862BF8AD27E9C8CE0056A45B /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862BF8AC27E9C8CE0056A45B /* Splash.storyboard */; };
 		E607FE83EE68F41911C6FF1D /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D817F8431D5897D1583F035 /* SplashPresenter.swift */; };
 		F0C2D3725831C8534C4AA8A0 /* Pods_github_api_sample_app_ios_viperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77679E23B8C333B8267D0440 /* Pods_github_api_sample_app_ios_viperTests.framework */; };
 /* End PBXBuildFile section */
@@ -55,10 +53,7 @@
 		862BF86027E3FDE40056A45B /* github_api_sample_app_ios_viper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = github_api_sample_app_ios_viper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862BF86327E3FDE40056A45B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		862BF86527E3FDE40056A45B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		862BF86727E3FDE40056A45B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		862BF86A27E3FDE40056A45B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		862BF86C27E3FDE60056A45B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		862BF86F27E3FDE60056A45B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		862BF87127E3FDE60056A45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		862BF87627E3FDE60056A45B /* github_api_sample_app_ios_viperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = github_api_sample_app_ios_viperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		862BF87A27E3FDE60056A45B /* github_api_sample_app_ios_viperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = github_api_sample_app_ios_viperTests.swift; sourceTree = "<group>"; };
@@ -67,6 +62,7 @@
 		862BF88627E3FDE60056A45B /* github_api_sample_app_ios_viperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = github_api_sample_app_ios_viperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		862BF8A627E75ADA0056A45B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		862BF8A827E9472B0056A45B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		862BF8AC27E9C8CE0056A45B /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		885F53DEEB6FC9CBBBD09982 /* Pods-github_api_sample_app_ios_viperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viperTests.release.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viperTests/Pods-github_api_sample_app_ios_viperTests.release.xcconfig"; sourceTree = "<group>"; };
 		A51CF0CA4C37FCDC276427BA /* Pods-github_api_sample_app_ios_viper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-github_api_sample_app_ios_viper.release.xcconfig"; path = "Target Support Files/Pods-github_api_sample_app_ios_viper/Pods-github_api_sample_app_ios_viper.release.xcconfig"; sourceTree = "<group>"; };
 		A7C8AA3919E69D8734847A58 /* SplashRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
@@ -195,9 +191,6 @@
 		862BF89427E420C70056A45B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				862BF86727E3FDE40056A45B /* ViewController.swift */,
-				862BF86927E3FDE40056A45B /* Main.storyboard */,
-				862BF86E27E3FDE60056A45B /* LaunchScreen.storyboard */,
 				8A02DAEF995A647DA15C8FDC /* Splash */,
 			);
 			path = Scenes;
@@ -309,8 +302,8 @@
 				5D817F8431D5897D1583F035 /* SplashPresenter.swift */,
 				A7C8AA3919E69D8734847A58 /* SplashRouter.swift */,
 				B12E1E4DCF57141486259166 /* SplashConfigurator.swift */,
+				862BF8AC27E9C8CE0056A45B /* Splash.storyboard */,
 			);
-			name = Splash;
 			path = Splash;
 			sourceTree = "<group>";
 		};
@@ -427,10 +420,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				862BF87027E3FDE60056A45B /* LaunchScreen.storyboard in Resources */,
 				862BF8A927E9472B0056A45B /* Localizable.strings in Resources */,
 				862BF86D27E3FDE60056A45B /* Assets.xcassets in Resources */,
-				862BF86B27E3FDE40056A45B /* Main.storyboard in Resources */,
+				862BF8AD27E9C8CE0056A45B /* Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,7 +549,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -631,7 +623,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				862BF86827E3FDE40056A45B /* ViewController.swift in Sources */,
 				862BF86427E3FDE40056A45B /* AppDelegate.swift in Sources */,
 				862BF86627E3FDE40056A45B /* SceneDelegate.swift in Sources */,
 				862BF8A727E75ADA0056A45B /* R.generated.swift in Sources */,
@@ -673,25 +664,6 @@
 			targetProxy = 862BF88127E3FDE60056A45B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		862BF86927E3FDE40056A45B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				862BF86A27E3FDE40056A45B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		862BF86E27E3FDE60056A45B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				862BF86F27E3FDE60056A45B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		862BF88827E3FDE60056A45B /* Debug */ = {
@@ -821,7 +793,7 @@
 				INFOPLIST_FILE = github_api_sample_app_ios_viper/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Splash;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -850,7 +822,7 @@
 				INFOPLIST_FILE = github_api_sample_app_ios_viper/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Splash;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
