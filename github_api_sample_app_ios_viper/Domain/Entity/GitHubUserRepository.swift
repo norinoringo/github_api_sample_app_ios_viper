@@ -2,7 +2,7 @@ public struct GitHubUserRepositry: Codable {
     public var repositoryName: String
     public var description: String?
     public var language: String?
-    public var stargazersCount: Int?
+    public var stargazersCount: Int
     public var url: String
     public var fork: Bool
 
