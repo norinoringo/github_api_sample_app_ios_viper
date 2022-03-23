@@ -1,10 +1,15 @@
 import Foundation
 import UIKit
 
-protocol GitHubUserListView {}
+protocol GitHubUserListView {
+    func initView()
+    func reloadView(githubUserList: [GitHubUser])
+}
 
 class GitHubUserListViewController: UIViewController {
     // MARK: - Constants
+
+    private let tableView = UITableView()
 
     // MARK: - Outlets
 
@@ -13,6 +18,7 @@ class GitHubUserListViewController: UIViewController {
     var presenter: GitHubUserListPresenter!
 
     var accessToken: String = ""
+    var githubUserList: [GitHubUser] = []
 
     // MARK: - UIViewController Methods
 
@@ -39,4 +45,42 @@ extension GitHubUserListViewController {}
 
 // MARK: - Delegate Methods
 
-extension GitHubUserListViewController: GitHubUserListView {}
+extension GitHubUserListViewController: GitHubUserListView {
+    func initView() {
+        view.addSubview(tableView)
+    }
+
+    func reloadView(githubUserList: [GitHubUser]) {
+        self.githubUserList = githubUserList
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            // reloadData時にdelayをかけないとスクロールインジケーターが表示されなかった
+            self.tableView.flashScrollIndicators()
+        }
+    }
+}
+
+// MARK: - UITableViewController Methods
+
+extension GitHubUserListViewController: UITableViewDataSource {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        githubUserList.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "githubUserCell", for: indexPath) as? GitHubUserCell
+        cell?.createCell(githubUser: githubUserList[indexPath.row])
+        return cell!
+    }
+}
+
+// MARK: - UITableViewDelegate Methods
+
+extension GitHubUserListViewController: UITableViewDelegate {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let githubUser = githubUserList[indexPath.row]
+        presenter.tappedCell(githubUser: githubUser)
+    }
+}
