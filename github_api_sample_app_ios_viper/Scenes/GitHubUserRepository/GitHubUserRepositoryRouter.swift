@@ -1,14 +1,14 @@
 import Foundation
 import UIKit
 
-protocol SplashRouter {
+protocol GitHubUserRepositoryRouter {
     func gotoTop()
 }
 
-class SplashRouterImpl: SplashRouter {
-    let viewController: SplashViewController
+class GitHubUserRepositoryRouterImpl: GitHubUserRepositoryRouter {
+    let viewController: GitHubUserRepositoryViewController
 
-    init(view: SplashViewController) {
+    init(view: GitHubUserRepositoryViewController) {
         viewController = view
     }
 

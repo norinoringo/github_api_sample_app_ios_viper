@@ -12,8 +12,8 @@ class {{ module_info.name }}RouterImpl: {{ module_info.name }}Router {
         viewController = view
     }
 
-    func gotoTop() {
-        guard let nextView = R.storyboard.top.topViewController() else { return }
+    func gotoTop() {        
+	guard let nextView = R.storyboard.top.instantiateInitialViewController() else { return }
         let configurator = TopConfiguratorImpl()
         configurator.configure(dependency: nextView)
         viewController.navigationController?.pushViewController(nextView, animated: true)
