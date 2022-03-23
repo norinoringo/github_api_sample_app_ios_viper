@@ -1,17 +1,7 @@
-//
-// MARK: - Constants
-// MARK: - Variables
-// MARK: - ViewLifeCycle
-// MARK: - Private Methods
-// MARK: - Public Methods
-// MARK: - Delegate Methods
-
-
-import XCTest
 @testable import github_api_sample_app_ios_viper
+import XCTest
 
-class github_api_sample_app_ios_viperTests: XCTestCase {
-
+class GithubapisampleappiosviperTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -30,9 +20,8 @@ class github_api_sample_app_ios_viperTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
-
 }
