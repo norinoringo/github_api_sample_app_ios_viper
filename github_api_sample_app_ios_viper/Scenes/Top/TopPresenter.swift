@@ -2,6 +2,7 @@ import Foundation
 
 protocol TopPresenter {
     func didFinishPrepare()
+    func searchButtonTapped()
 }
 
 class TopPresenterImpl: TopPresenter {
@@ -15,5 +16,9 @@ class TopPresenterImpl: TopPresenter {
         self.router = router
     }
 
-    func didFinishPrepare() {}
+    func didFinishPrepare() {
+        view.initView()
+    }
+
+    func searchButtonTapped() {}
 }
