@@ -42,7 +42,9 @@ class GitHubUserRepositoryPresenterImpl: GitHubUserRepositoryPresenter {
                 self.fetchGitHubUserRepositoryUseCase.fetchGitHubUserList(input: repositoryInput)
                     .then { result in
                         log.debug("\(result)")
-                        self.view.updateUserRepository(userRepository: result.gitHubUerRepository)
+                        // fork = true をフィルターしている
+                        let userRepositoryWithNonForked = result.gitHubUerRepository.filter { repo in !(repo.fork) }
+                        self.view.updateUserRepository(userRepository: userRepositoryWithNonForked)
                     }.catch { _ in
                     }
             }
