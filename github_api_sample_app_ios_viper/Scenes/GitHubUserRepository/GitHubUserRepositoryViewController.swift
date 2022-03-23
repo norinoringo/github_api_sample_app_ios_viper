@@ -8,6 +8,9 @@ class GitHubUserRepositoryViewController: UIViewController {
 
     // MARK: - Outlets
 
+    @IBOutlet var userDetailView: UIView!
+    @IBOutlet var userRepositoryTableView: UITableView!
+
     // MARK: - Variables
 
     var presenter: GitHubUserRepositoryPresenter!
