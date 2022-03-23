@@ -147,6 +147,8 @@ extension TopViewController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         accessToken = inputTokenTextField.text ?? ""
+        log.debug("キーボード入力操作を完了した")
+        log.debug("accessToken:\(accessToken)")
     }
 }
 
@@ -159,5 +161,6 @@ extension TopViewController {
 
     @objc private func hideKeyboard() {
         view.endEditing(true)
+        // log.debug("キーボード外の領域をタップしたのでキーボードを非表示にする")
     }
 }
