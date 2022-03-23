@@ -89,12 +89,21 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
   struct storyboard {
+    /// Storyboard `GitHubUserList`.
+    static let gitHubUserList = _R.storyboard.gitHubUserList()
     /// Storyboard `Splash`.
     static let splash = _R.storyboard.splash()
     /// Storyboard `Top`.
     static let top = _R.storyboard.top()
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "GitHubUserList", bundle: ...)`
+    static func gitHubUserList(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.gitHubUserList)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIStoryboard(name: "Splash", bundle: ...)`
@@ -194,12 +203,29 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       #if os(iOS) || os(tvOS)
+      try gitHubUserList.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try splash.validate()
       #endif
       #if os(iOS) || os(tvOS)
       try top.validate()
       #endif
     }
+
+    #if os(iOS) || os(tvOS)
+    struct gitHubUserList: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "GitHubUserList"
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     struct splash: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
