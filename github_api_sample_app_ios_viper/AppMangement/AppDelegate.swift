@@ -7,6 +7,10 @@ let log = XCGLogger.default
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        // DIContainerのインスタンス作成が必須
+        DIContainer.setup(type: .real)
+
         return true
     }
 

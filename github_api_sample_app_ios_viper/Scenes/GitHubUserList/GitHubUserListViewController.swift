@@ -21,7 +21,7 @@ class GitHubUserListViewController: UIViewController {
         log.debug("GitHubUserList画面起動")
         log.debug("accessToken:\(accessToken)")
 
-        presenter.didFinishPrepare()
+        presenter.didFinishPrepare(accessToken: accessToken)
     }
 }
 
