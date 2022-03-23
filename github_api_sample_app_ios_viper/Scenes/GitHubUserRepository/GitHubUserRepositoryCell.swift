@@ -96,17 +96,30 @@ extension GitHubUserRepositoryCell {
         // skeltonを非表示にしたときに位置が大きくずれるのでtopAnchorから16ptの制約をつけた
         repositoryDetailLabel.topAnchor.constraint(equalTo: starCountLabel.bottomAnchor, constant: upperLabelMargin).isActive = true
         repositoryDetailLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: baseMargin).isActive = true
+        let repositoryDetailLabelBottomAnchor = repositoryDetailLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -baseMargin)
+        repositoryDetailLabelBottomAnchor.priority = .defaultLow
+        repositoryDetailLabelBottomAnchor.isActive = true
         repositoryDetailLabel.isSkeletonable = true
         // UIパーツのwidthを設定しないとskeltonが表示されないので対応した
         let width = frame.width - repositoryDetailLabel.frame.minX - baseMargin
         repositoryDetailLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
+
+        repositoryDetailLabel.numberOfLines = 0
     }
 
     private func createUserRepositoryCell(githubUserRepository: GitHubUserRepositry) {
-        repositoryNameLabel.text = githubUserRepository.repositoryName
-        programingLanguageLabel.text = githubUserRepository.language
-        starCountLabel.text = String(githubUserRepository.stargazersCount)
-        repositoryDetailLabel.text = githubUserRepository.description
+        repositoryNameLabel.text = "リポジトリ名：\(githubUserRepository.repositoryName)"
+        if let language = githubUserRepository.language {
+            programingLanguageLabel.text = "開発言語：\(language)"
+        } else {
+            programingLanguageLabel.text = "開発言語：記載なし"
+        }
+        starCountLabel.text = "スター数：\(String(githubUserRepository.stargazersCount))"
+        if let description = githubUserRepository.description {
+            repositoryDetailLabel.text = "説明文：\(description)"
+        } else {
+            repositoryDetailLabel.text = "説明文：記載なし"
+        }
     }
 }
 

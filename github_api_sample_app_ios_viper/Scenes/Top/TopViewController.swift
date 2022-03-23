@@ -38,6 +38,10 @@ extension TopViewController {}
 // MARK: - Private Methods
 
 extension TopViewController {
+    private func initNavigationController() {
+        navigationItem.hidesBackButton = true
+    }
+
     private func initHeaderLabel() {
         createHeaderLabel()
         activeConstaraintHeaderLabel()
@@ -132,6 +136,7 @@ extension TopViewController {}
 
 extension TopViewController: TopView {
     func initView() {
+        initNavigationController()
         initHeaderLabel()
         initExplainLabel()
         initInputTokenTextField()

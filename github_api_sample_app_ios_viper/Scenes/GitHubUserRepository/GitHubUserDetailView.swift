@@ -118,10 +118,10 @@ extension GitHubUserDetailView {
         iconImageView.hideSkeleton()
         userNameLabel.hideSkeleton()
         Nuke.loadImage(with: githubUserDetail.avatarUrl, into: iconImageView)
-        userNameLabel.text = githubUserDetail.login
-        userFullNameLabel.text = githubUserDetail.userFullName
-        followersConuntLabel.text = String(githubUserDetail.followers)
-        followingCountLabel.text = String(githubUserDetail.following)
+        userNameLabel.text = "ユーザー名：\(githubUserDetail.login)"
+        userFullNameLabel.text = "フルネーム：\(githubUserDetail.userFullName)"
+        followersConuntLabel.text = "フォロワー数：\(String(githubUserDetail.followers))"
+        followingCountLabel.text = "フォロイー数：\(String(githubUserDetail.following))"
     }
 }
 
