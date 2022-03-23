@@ -89,10 +89,12 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     /// Storyboard `GitHubUserList`.
     static let gitHubUserList = _R.storyboard.gitHubUserList()
+    /// Storyboard `GitHubUserRepository`.
+    static let gitHubUserRepository = _R.storyboard.gitHubUserRepository()
     /// Storyboard `Splash`.
     static let splash = _R.storyboard.splash()
     /// Storyboard `Top`.
@@ -102,6 +104,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "GitHubUserList", bundle: ...)`
     static func gitHubUserList(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.gitHubUserList)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "GitHubUserRepository", bundle: ...)`
+    static func gitHubUserRepository(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.gitHubUserRepository)
     }
     #endif
 
@@ -206,6 +215,9 @@ struct _R: Rswift.Validatable {
       try gitHubUserList.validate()
       #endif
       #if os(iOS) || os(tvOS)
+      try gitHubUserRepository.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try splash.validate()
       #endif
       #if os(iOS) || os(tvOS)
@@ -219,6 +231,22 @@ struct _R: Rswift.Validatable {
 
       let bundle = R.hostingBundle
       let name = "GitHubUserList"
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct gitHubUserRepository: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = GitHubUserRepositoryViewController
+
+      let bundle = R.hostingBundle
+      let name = "GitHubUserRepository"
 
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
