@@ -1,0 +1,7 @@
+# format options
+
+# file options
+--exclude Pods,Carthage,R.generated.swift
+
+# rules
+--stripunusedargs closure-only

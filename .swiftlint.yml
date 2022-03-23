@@ -1,0 +1,12 @@
+# 実行から除外するルール
+disabled_rules:
+
+# Pod等のライブラリは対象外
+excluded:
+- Pods/
+- Podfile
+- Podfile.lock
+- R.generated.swift
+
+# 1行あたりの文字数制限
+line_length: 300

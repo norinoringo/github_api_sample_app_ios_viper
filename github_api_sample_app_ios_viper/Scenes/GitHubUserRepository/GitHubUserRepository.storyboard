@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Git Hub User Repository View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="GitHubUserRepositoryViewController" customModule="github_api_sample_app_ios_viper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWA-wh-pQq" userLabel="UserDetailView" customClass="GitHubUserDetailView" customModule="github_api_sample_app_ios_viper" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="150"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="amt-Z0-SK3"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qMH-cC-bLm" userLabel="UserRepositoryTableView">
+                                <rect key="frame" x="0.0" y="194" width="414" height="668"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iWA-wh-pQq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Av3-qI-MEx"/>
+                            <constraint firstItem="iWA-wh-pQq" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="OaC-WL-dHy"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="iWA-wh-pQq" secondAttribute="trailing" id="Rjw-eK-rY6"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="qMH-cC-bLm" secondAttribute="bottom" id="Z0a-kQ-xQ0"/>
+                            <constraint firstItem="qMH-cC-bLm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="eue-zR-Jp9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qMH-cC-bLm" secondAttribute="trailing" id="jrf-sS-gEi"/>
+                            <constraint firstItem="qMH-cC-bLm" firstAttribute="top" secondItem="iWA-wh-pQq" secondAttribute="bottom" id="ln7-N7-h2D"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="userDetailView" destination="iWA-wh-pQq" id="FdT-EW-ttt"/>
+                        <outlet property="userRepositoryTableView" destination="qMH-cC-bLm" id="RJs-8m-UNq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="110"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
