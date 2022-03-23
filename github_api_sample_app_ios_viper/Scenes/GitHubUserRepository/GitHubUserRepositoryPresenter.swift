@@ -15,5 +15,7 @@ class GitHubUserRepositoryPresenterImpl: GitHubUserRepositoryPresenter {
         self.router = router
     }
 
-    func didFinishPrepare() {}
+    func didFinishPrepare() {
+        view.initView()
+    }
 }

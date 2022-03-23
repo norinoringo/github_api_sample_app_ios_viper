@@ -91,6 +91,6 @@ extension GitHubUserListViewController: UITableViewDataSource {
 extension GitHubUserListViewController: UITableViewDelegate {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let githubUser = githubUserList[indexPath.row]
-        presenter.tappedCell(githubUser: githubUser)
+        presenter.tappedCell(accessToken: accessToken, githubUser: githubUser)
     }
 }

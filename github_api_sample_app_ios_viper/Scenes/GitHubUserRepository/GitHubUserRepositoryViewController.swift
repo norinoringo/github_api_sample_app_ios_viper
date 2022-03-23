@@ -1,7 +1,9 @@
 import Foundation
 import UIKit
 
-protocol GitHubUserRepositoryView {}
+protocol GitHubUserRepositoryView {
+    func initView()
+}
 
 class GitHubUserRepositoryViewController: UIViewController {
     // MARK: - Constants
@@ -15,11 +17,16 @@ class GitHubUserRepositoryViewController: UIViewController {
 
     var presenter: GitHubUserRepositoryPresenter!
 
+    var accessToken: String = ""
+    var githubUser: GitHubUser!
+
     // MARK: - UIViewController Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         log.debug("GitHubUserRepository画面起動")
+        log.debug("accessToken:\(accessToken)")
+        log.debug("githubUser:\(githubUser)")
 
         presenter.didFinishPrepare()
     }
@@ -39,4 +46,6 @@ extension GitHubUserRepositoryViewController {}
 
 // MARK: - Delegate Methods
 
-extension GitHubUserRepositoryViewController: GitHubUserRepositoryView {}
+extension GitHubUserRepositoryViewController: GitHubUserRepositoryView {
+    func initView() {}
+}

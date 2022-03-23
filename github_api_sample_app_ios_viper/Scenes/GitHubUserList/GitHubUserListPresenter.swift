@@ -2,7 +2,7 @@ import Foundation
 
 protocol GitHubUserListPresenter {
     func didFinishPrepare(accessToken: String)
-    func tappedCell(githubUser: GitHubUser)
+    func tappedCell(accessToken: String, githubUser: GitHubUser)
 }
 
 class GitHubUserListPresenterImpl: GitHubUserListPresenter {
@@ -27,8 +27,9 @@ class GitHubUserListPresenterImpl: GitHubUserListPresenter {
         fetchGitHubUserList()
     }
 
-    func tappedCell(githubUser: GitHubUser) {
+    func tappedCell(accessToken: String, githubUser: GitHubUser) {
         log.debug(githubUser)
+        router.gotoGitHubUserRepository(accessToken: accessToken, githubUser: githubUser)
     }
 
     private func fetchGitHubUserList() {
