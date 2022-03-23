@@ -18,7 +18,11 @@ class GitHubUserListViewController: UIViewController {
     var presenter: GitHubUserListPresenter!
 
     var accessToken: String = ""
-    var githubUserList: [GitHubUser] = []
+    var githubUserList: [GitHubUser] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     // MARK: - UIViewController Methods
 
@@ -47,6 +51,12 @@ extension GitHubUserListViewController {}
 
 extension GitHubUserListViewController: GitHubUserListView {
     func initView() {
+        title = "GitHubUser一覧"
+        // テーブルビュー初期化、関連付け
+        tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(GitHubUserCell.self, forCellReuseIdentifier: "githubUserCell")
         view.addSubview(tableView)
     }
 
