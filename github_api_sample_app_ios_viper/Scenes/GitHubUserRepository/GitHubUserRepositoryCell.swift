@@ -96,10 +96,15 @@ extension GitHubUserRepositoryCell {
         // skeltonを非表示にしたときに位置が大きくずれるのでtopAnchorから16ptの制約をつけた
         repositoryDetailLabel.topAnchor.constraint(equalTo: starCountLabel.bottomAnchor, constant: upperLabelMargin).isActive = true
         repositoryDetailLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: baseMargin).isActive = true
+        let repositoryDetailLabelBottomAnchor = repositoryDetailLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -baseMargin)
+        repositoryDetailLabelBottomAnchor.priority = .defaultLow
+        repositoryDetailLabelBottomAnchor.isActive = true
         repositoryDetailLabel.isSkeletonable = true
         // UIパーツのwidthを設定しないとskeltonが表示されないので対応した
         let width = frame.width - repositoryDetailLabel.frame.minX - baseMargin
         repositoryDetailLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
+
+        repositoryDetailLabel.numberOfLines = 0
     }
 
     private func createUserRepositoryCell(githubUserRepository: GitHubUserRepositry) {

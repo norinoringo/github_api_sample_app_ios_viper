@@ -60,7 +60,7 @@ extension GitHubUserRepositoryViewController: GitHubUserRepositoryView {
     func initView() {
         userRepositoryTableView.delegate = self
         userRepositoryTableView.dataSource = self
-        userRepositoryTableView.register(GitHubUserCell.self, forCellReuseIdentifier: "githubUserCell")
+        userRepositoryTableView.register(GitHubUserRepositoryCell.self, forCellReuseIdentifier: "githubUserCell")
     }
 
     func updateUserDetailView(userDetail: GitHubUserDetail) {
@@ -88,7 +88,7 @@ extension GitHubUserRepositoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "githubUserCell", for: indexPath) as? GitHubUserRepositoryCell
         cell?.createCell(githubUserRepository: githubUserRepository[indexPath.row])
-        return cell ?? UITableViewCell()
+        return cell ?? GitHubUserRepositoryCell()
     }
 }
 
