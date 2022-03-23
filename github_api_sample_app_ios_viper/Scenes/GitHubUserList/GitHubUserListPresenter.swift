@@ -15,7 +15,5 @@ class GitHubUserListPresenterImpl: GitHubUserListPresenter {
         self.router = router
     }
 
-    func didFinishPrepare() {
-        router.gotoTop()
-    }
+    func didFinishPrepare() {}
 }

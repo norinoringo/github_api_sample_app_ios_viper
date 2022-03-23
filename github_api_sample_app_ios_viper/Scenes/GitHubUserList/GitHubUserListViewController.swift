@@ -6,19 +6,20 @@ protocol GitHubUserListView {}
 class GitHubUserListViewController: UIViewController {
     // MARK: - Constants
 
-    let accessToken: String = ""
-
     // MARK: - Outlets
 
     // MARK: - Variables
 
     var presenter: GitHubUserListPresenter!
 
+    var accessToken: String = ""
+
     // MARK: - UIViewController Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         log.debug("GitHubUserList画面起動")
+        log.debug("accessToken:\(accessToken)")
 
         presenter.didFinishPrepare()
     }

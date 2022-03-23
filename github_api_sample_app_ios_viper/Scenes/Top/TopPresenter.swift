@@ -20,5 +20,7 @@ class TopPresenterImpl: TopPresenter {
         view.initView()
     }
 
-    func searchButtonTapped(accessToken: String) {}
+    func searchButtonTapped(accessToken: String) {
+        router.gotoGitHubUserList(accessToken: accessToken)
+    }
 }

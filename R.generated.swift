@@ -214,7 +214,9 @@ struct _R: Rswift.Validatable {
     }
 
     #if os(iOS) || os(tvOS)
-    struct gitHubUserList: Rswift.StoryboardResourceType, Rswift.Validatable {
+    struct gitHubUserList: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = GitHubUserListViewController
+
       let bundle = R.hostingBundle
       let name = "GitHubUserList"
 
