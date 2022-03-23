@@ -19,6 +19,8 @@ class TopViewController: UIViewController {
 
     var presenter: TopPresenter!
 
+    var accessToken: String = ""
+
     // MARK: - UIViewController Methods
 
     override func viewDidLoad() {
@@ -77,6 +79,7 @@ extension TopViewController {
     private func initInputTokenTextField() {
         createInputTokenTextField()
         activeConstaraintInputTokenTextField()
+        setHideKeyboardTapped()
     }
 
     private func createInputTokenTextField() {
@@ -84,6 +87,7 @@ extension TopViewController {
         inputTokenTextField.placeholder = "personal access token"
         inputTokenTextField.textAlignment = .left
         inputTokenTextField.translatesAutoresizingMaskIntoConstraints = false
+        inputTokenTextField.delegate = self
         view.addSubview(inputTokenTextField)
     }
 
@@ -115,8 +119,8 @@ extension TopViewController {
         searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
 
-    @objc func searchButtonTapped(_ sender: UIButton) {
-        presenter.searchButtonTapped()
+    @objc private func searchButtonTapped(_ sender: UIButton) {
+        presenter.searchButtonTapped(accessToken: accessToken)
     }
 }
 
@@ -132,5 +136,28 @@ extension TopViewController: TopView {
         initExplainLabel()
         initInputTokenTextField()
         initSearchButton()
+    }
+}
+
+extension TopViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        accessToken = inputTokenTextField.text ?? ""
+    }
+}
+
+extension TopViewController {
+    func setHideKeyboardTapped() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
     }
 }

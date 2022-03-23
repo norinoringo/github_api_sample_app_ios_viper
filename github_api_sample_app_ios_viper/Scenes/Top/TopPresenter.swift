@@ -2,7 +2,7 @@ import Foundation
 
 protocol TopPresenter {
     func didFinishPrepare()
-    func searchButtonTapped()
+    func searchButtonTapped(accessToken: String)
 }
 
 class TopPresenterImpl: TopPresenter {
@@ -20,5 +20,5 @@ class TopPresenterImpl: TopPresenter {
         view.initView()
     }
 
-    func searchButtonTapped() {}
+    func searchButtonTapped(accessToken: String) {}
 }
