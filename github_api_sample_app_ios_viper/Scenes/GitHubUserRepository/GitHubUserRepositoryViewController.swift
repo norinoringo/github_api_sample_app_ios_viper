@@ -1,8 +1,10 @@
 import Foundation
+import SafariServices
 import UIKit
 
 protocol GitHubUserRepositoryView {
     func initView()
+    func openSafariView(url: String)
 }
 
 class GitHubUserRepositoryViewController: UIViewController {
@@ -19,6 +21,8 @@ class GitHubUserRepositoryViewController: UIViewController {
 
     var accessToken: String = ""
     var githubUser: GitHubUser!
+
+    var githubUserRepository: [GitHubUserRepositry] = []
 
     // MARK: - UIViewController Methods
 
@@ -47,5 +51,38 @@ extension GitHubUserRepositoryViewController {}
 // MARK: - Delegate Methods
 
 extension GitHubUserRepositoryViewController: GitHubUserRepositoryView {
-    func initView() {}
+    func initView() {
+        userRepositoryTableView.delegate = self
+        userRepositoryTableView.dataSource = self
+        userRepositoryTableView.register(GitHubUserCell.self, forCellReuseIdentifier: "githubUserCell")
+    }
+
+    func openSafariView(url: String) {
+        guard let url = URL(string: url) else { return }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UITableViewController Methods
+
+extension GitHubUserRepositoryViewController: UITableViewDataSource {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        githubUserRepository.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "githubUserCell", for: indexPath) as? GitHubUserRepositoryCell
+        cell?.createCell(githubUserRepository: githubUserRepository[indexPath.row])
+        return cell!
+    }
+}
+
+// MARK: - UITableViewDelegate Methods
+
+extension GitHubUserRepositoryViewController: UITableViewDelegate {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let githubUserRepository = githubUserRepository[indexPath.row]
+        presenter.tappedRepositoryCell(userRepository: githubUserRepository)
+    }
 }
