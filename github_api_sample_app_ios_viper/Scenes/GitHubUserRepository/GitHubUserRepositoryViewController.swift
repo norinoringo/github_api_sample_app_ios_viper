@@ -12,6 +12,8 @@ protocol GitHubUserRepositoryView {
 class GitHubUserRepositoryViewController: UIViewController {
     // MARK: - Constants
 
+    private let sectionTitle = ["ユーザーリポジトリ"]
+
     // MARK: - Outlets
 
     @IBOutlet var userDetailView: GitHubUserDetailView!
@@ -58,6 +60,7 @@ extension GitHubUserRepositoryViewController {}
 
 extension GitHubUserRepositoryViewController: GitHubUserRepositoryView {
     func initView() {
+        navigationItem.title = "GitHubUserRepository"
         userRepositoryTableView.delegate = self
         userRepositoryTableView.dataSource = self
         userRepositoryTableView.register(GitHubUserRepositoryCell.self, forCellReuseIdentifier: "githubUserCell")
@@ -89,6 +92,14 @@ extension GitHubUserRepositoryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "githubUserCell", for: indexPath) as? GitHubUserRepositoryCell
         cell?.createCell(githubUserRepository: githubUserRepository[indexPath.row])
         return cell ?? GitHubUserRepositoryCell()
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionTitle.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitle[section]
     }
 }
 
