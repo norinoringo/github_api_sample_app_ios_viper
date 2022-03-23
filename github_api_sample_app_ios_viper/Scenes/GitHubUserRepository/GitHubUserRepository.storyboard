@@ -41,7 +41,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="userDetailView" destination="iWA-wh-pQq" id="6Xh-Qz-PLa"/>
+                        <outlet property="userDetailView" destination="iWA-wh-pQq" id="FdT-EW-ttt"/>
                         <outlet property="userRepositoryTableView" destination="qMH-cC-bLm" id="RJs-8m-UNq"/>
                     </connections>
                 </viewController>

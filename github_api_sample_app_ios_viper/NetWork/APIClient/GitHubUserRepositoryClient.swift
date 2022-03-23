@@ -3,7 +3,7 @@ import Foundation
 class GitHubUserRepositoryClient: FetchGitHubUserRepositoryRepository {
     func fetchGitHubUserRepository(input: FetchGitHubUserRepositoryUseCaseInput, block: @escaping ([GitHubUserRepositry]?, Error?) -> Void) {
         let userName = input.githubUser.login
-        var req = URLRequest(url: URL(string: "https://api.github.com/\(userName)/repos")!)
+        var req = URLRequest(url: URL(string: "https://api.github.com/users/\(userName)/repos")!)
         req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
 
         let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: { data, response, error in

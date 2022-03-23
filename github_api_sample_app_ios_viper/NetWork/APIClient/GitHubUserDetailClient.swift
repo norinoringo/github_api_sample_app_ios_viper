@@ -3,7 +3,7 @@ import Foundation
 class GitHubUserDetailClient: FetchGitHubUserDetailRepository {
     func fetchGitHubUserDetail(input: FetchGitHubUserDetailUseCaseInput, block: @escaping (GitHubUserDetail?, Error?) -> Void) {
         let userName = input.githubUser.login
-        var req = URLRequest(url: URL(string: "https://api.github.com/\(userName)/")!)
+        var req = URLRequest(url: URL(string: "https://api.github.com/users/\(userName)")!)
         req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
 
         let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: { data, response, error in

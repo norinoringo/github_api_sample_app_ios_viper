@@ -116,6 +116,11 @@ extension GitHubUserRepositoryCell {
     func createCell(githubUserRepository: GitHubUserRepositry) {
         createUserRepositoryCell(githubUserRepository: githubUserRepository)
     }
+
+    func createSkeltonCell() -> UITableViewCell {
+        let cell = GitHubUserRepositoryCell()
+        return cell
+    }
 }
 
 // MARK: - Delegate Methods

@@ -4,6 +4,8 @@ import UIKit
 
 protocol GitHubUserRepositoryView {
     func initView()
+    func updateUserDetailView(userDetail: GitHubUserDetail)
+    func updateUserRepository(userRepository: [GitHubUserRepositry])
     func openSafariView(url: String)
 }
 
@@ -12,7 +14,7 @@ class GitHubUserRepositoryViewController: UIViewController {
 
     // MARK: - Outlets
 
-    @IBOutlet var userDetailView: UIView!
+    @IBOutlet var userDetailView: GitHubUserDetailView!
     @IBOutlet var userRepositoryTableView: UITableView!
 
     // MARK: - Variables
@@ -22,7 +24,11 @@ class GitHubUserRepositoryViewController: UIViewController {
     var accessToken: String = ""
     var githubUser: GitHubUser!
 
-    var githubUserRepository: [GitHubUserRepositry] = []
+    var githubUserRepository: [GitHubUserRepositry] = [] {
+        didSet {
+            userRepositoryTableView.reloadData()
+        }
+    }
 
     // MARK: - UIViewController Methods
 
@@ -32,7 +38,7 @@ class GitHubUserRepositoryViewController: UIViewController {
         log.debug("accessToken:\(accessToken)")
         log.debug("githubUser:\(githubUser)")
 
-        presenter.didFinishPrepare()
+        presenter.didFinishPrepare(accessToken: accessToken, githubUser: githubUser)
     }
 }
 
@@ -57,6 +63,14 @@ extension GitHubUserRepositoryViewController: GitHubUserRepositoryView {
         userRepositoryTableView.register(GitHubUserCell.self, forCellReuseIdentifier: "githubUserCell")
     }
 
+    func updateUserDetailView(userDetail: GitHubUserDetail) {
+        userDetailView.createCell(githubUserDetail: userDetail)
+    }
+
+    func updateUserRepository(userRepository: [GitHubUserRepositry]) {
+        githubUserRepository = userRepository
+    }
+
     func openSafariView(url: String) {
         guard let url = URL(string: url) else { return }
         let vc = SFSafariViewController(url: url)
@@ -74,7 +88,7 @@ extension GitHubUserRepositoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "githubUserCell", for: indexPath) as? GitHubUserRepositoryCell
         cell?.createCell(githubUserRepository: githubUserRepository[indexPath.row])
-        return cell!
+        return cell ?? UITableViewCell()
     }
 }
 
