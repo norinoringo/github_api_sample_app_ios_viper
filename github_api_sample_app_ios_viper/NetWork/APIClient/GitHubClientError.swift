@@ -5,4 +5,6 @@ public enum GitHubClientError: Error {
     case responseParseError(Error)
     // APIからエラーレスポンスを受け取った
     case apiError(GitHubAPIError)
+    // 原因不明
+    case unkownError
 }
