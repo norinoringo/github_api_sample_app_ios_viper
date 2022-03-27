@@ -82,7 +82,7 @@ extension GitHubUserListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "githubUserCell", for: indexPath) as? GitHubUserCell
         cell?.createCell(githubUser: githubUserList[indexPath.row])
-        return cell!
+        return cell ?? GitHubUserCell()
     }
 }
 
