@@ -1,6 +1,12 @@
 import Foundation
 
 class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
+    func fetchGitHubUserList(input: FetchGitHubUserListUseCaseInput, block: @escaping ([GitHubUser]?, Error?) -> Void) {
+        var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
+        req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
+        doURLSessionTask(req: req, block: block)
+    }
+
     func fetchGitHubUserDetail(input: FetchGitHubUserDetailUseCaseInput, block: @escaping (GitHubUserDetail?, Error?) -> Void) {
         let userName = input.githubUser.login
         var req = URLRequest(url: URL(string: "https://api.github.com/users/\(userName)")!)
@@ -14,34 +20,35 @@ class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
         req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
         doURLSessionTask(req: req, block: block)
     }
+}
 
-    func fetchGitHubUserList(input: FetchGitHubUserListUseCaseInput, block: @escaping ([GitHubUser]?, Error?) -> Void) {
-        var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
-        req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
-        doURLSessionTask(req: req, block: block)
-    }
-
+extension GitHubUserAPIClient {
     private func doURLSessionTask<ApiType: Decodable>(req: URLRequest, block: @escaping (ApiType?, Error?) -> Void) {
         let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: { data, response, error in
             if let error = error {
+                log.debug("通信エラー:\(error)")
                 block(nil, error)
                 return
             }
+            log.debug("\(ApiType.self)_response:\(response)")
             if let response = response as? HTTPURLResponse {
                 if response.statusCode >= 300 || response.statusCode < 200 {
                     do {
                         let dataMessage = try JSONDecoder().decode(GitHubAPIError.self, from: data!)
+                        log.debug("エラーレスポンスのパース成功")
                         block(nil, dataMessage)
                     } catch {
-                        print(error)
+                        log.debug("レスポンスのパースエラー:\(error)")
                         block(nil, error)
                     }
                 }
             }
             do {
                 let response = try JSONDecoder().decode(ApiType.self, from: data!)
+                log.debug("\(ApiType.self)レスポンスのパース成功")
                 block(response, nil)
             } catch {
+                log.debug("レスポンスのパースエラー:\(error)")
                 block(nil, error)
             }
         })

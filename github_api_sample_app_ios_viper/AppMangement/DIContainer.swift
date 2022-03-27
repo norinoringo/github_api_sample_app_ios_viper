@@ -1,7 +1,7 @@
 import Foundation
 
 class DIContainer {
-    private static var fetchGitHubAPIClientRepositoryCreator: (() -> FetchGitHubAPIClientRepository)!
+    private static var fetchGitHubAPIClientRepositoryCreater: (() -> FetchGitHubAPIClientRepository)!
 }
 
 extension DIContainer {
@@ -11,7 +11,7 @@ extension DIContainer {
     }
 
     static func setup(type: Type) {
-        fetchGitHubAPIClientRepositoryCreator = {
+        fetchGitHubAPIClientRepositoryCreater = {
             switch type {
             case .inMemory:
                 return GitHubUserAPIClient()
@@ -24,6 +24,6 @@ extension DIContainer {
 
 extension DIContainer {
     static func fetchGitHubAPIClientRepository() -> FetchGitHubAPIClientRepository {
-        fetchGitHubAPIClientRepositoryCreator()
+        fetchGitHubAPIClientRepositoryCreater()
     }
 }
