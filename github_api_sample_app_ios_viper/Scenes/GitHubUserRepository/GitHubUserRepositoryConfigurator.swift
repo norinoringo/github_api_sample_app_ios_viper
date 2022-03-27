@@ -6,8 +6,8 @@ protocol GitHubUserRepositoryConfigurator {
 
 class GitHubUserRepositoryConfiguratorImpl: GitHubUserRepositoryConfigurator {
     func configure(dependency: GitHubUserRepositoryViewController) {
-        let fetchGitHubUserDetailRepository = DIContainer.fetchGitHubUserDetail()
-        let fetchGitHubUserRepositoryRepository = DIContainer.fetchGitHubUserRepositoryRepository()
+        let fetchGitHubUserDetailRepository = DIContainer.fetchGitHubAPIClientRepository()
+        let fetchGitHubUserRepositoryRepository = DIContainer.fetchGitHubAPIClientRepository()
         let router = GitHubUserRepositoryRouterImpl(view: dependency)
         let presenter = GitHubUserRepositoryPresenterImpl(view: dependency,
                                                           router: router,

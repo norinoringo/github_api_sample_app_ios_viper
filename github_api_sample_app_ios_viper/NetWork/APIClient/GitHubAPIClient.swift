@@ -45,6 +45,7 @@ class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
                 block(nil, error)
             }
         })
+        // URLSessionTaskを実行する
         task.resume()
     }
 }
