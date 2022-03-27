@@ -31,26 +31,18 @@ class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
                 if response.statusCode >= 300 || response.statusCode < 200 {
                     do {
                         let dataMessage = try JSONDecoder().decode(GitHubAPIError.self, from: data!)
-                        DispatchQueue.main.async {
-                            block(nil, dataMessage)
-                        }
+                        block(nil, dataMessage)
                     } catch {
                         print(error)
-                        DispatchQueue.main.async {
-                            block(nil, error)
-                        }
+                        block(nil, error)
                     }
                 }
             }
             do {
                 let response = try JSONDecoder().decode(ApiType.self, from: data!)
-                DispatchQueue.main.async {
-                    block(response, nil)
-                }
+                block(response, nil)
             } catch {
-                DispatchQueue.main.async {
-                    block(nil, error)
-                }
+                block(nil, error)
             }
         })
         task.resume()
