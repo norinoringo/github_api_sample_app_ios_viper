@@ -23,14 +23,14 @@ class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
 }
 
 extension GitHubUserAPIClient {
-    private func doURLSessionTask<ApiType: Decodable>(req: URLRequest, block: @escaping (ApiType?, Error?) -> Void) {
+    private func doURLSessionTask<ResponseType: Decodable>(req: URLRequest, block: @escaping (ResponseType?, Error?) -> Void) {
         let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: { data, response, error in
             if let error = error {
                 log.debug("通信エラー:\(error)")
                 block(nil, error)
                 return
             }
-            log.debug("\(ApiType.self)_response:\(response)")
+            log.debug("\(ResponseType.self)_response:\(response)")
             if let response = response as? HTTPURLResponse {
                 if response.statusCode >= 300 || response.statusCode < 200 {
                     do {
@@ -44,8 +44,8 @@ extension GitHubUserAPIClient {
                 }
             }
             do {
-                let response = try JSONDecoder().decode(ApiType.self, from: data!)
-                log.debug("\(ApiType.self)レスポンスのパース成功")
+                let response = try JSONDecoder().decode(ResponseType.self, from: data!)
+                log.debug("\(ResponseType.self)レスポンスのパース成功")
                 block(response, nil)
             } catch {
                 log.debug("レスポンスのパースエラー:\(error)")
