@@ -11,22 +11,22 @@ struct FetchGitHubUserRepositoryUseCaseOutput {
 }
 
 class FetchGitHubUserRepositoryUseCase {
-    let repository: FetchGitHubUserRepositoryRepository
+    let repository: FetchGitHubAPIClientRepository
 
-    init(repository: FetchGitHubUserRepositoryRepository) {
+    init(repository: FetchGitHubAPIClientRepository) {
         self.repository = repository
     }
 
     func fetchGitHubUserList(input: FetchGitHubUserRepositoryUseCaseInput) -> Promise<FetchGitHubUserRepositoryUseCaseOutput> {
-        Promise<FetchGitHubUserRepositoryUseCaseOutput>(on: .global(qos: .background)) { fullfill, reject in
-            DispatchQueue.main.async {
-                self.repository.fetchGitHubUserRepository(input: input) { result, error in
+        return Promise<FetchGitHubUserRepositoryUseCaseOutput>(on: .global(qos: .background)) { fullfill, reject in
+            self.repository.fetchGitHubUserRepository(input: input) { result, error in
+                DispatchQueue.main.async {
                     if let error = error {
                         reject(error)
                     } else if let result = result {
                         fullfill(FetchGitHubUserRepositoryUseCaseOutput(gitHubUerRepository: result))
                     } else {
-                        reject(error!)
+                        reject(GitHubClientError.unkownError)
                     }
                 }
             }

@@ -48,7 +48,7 @@ class GitHubUserDetailTest: XCTestCase {
 
         XCTAssertEqual(githubUserDetail.login, "mojombo")
         XCTAssertEqual(githubUserDetail.avatarUrl, "https://avatars.githubusercontent.com/u/1?v=4")
-        XCTAssertEqual(githubUserDetail.name, "Tom Preston-Werner")
+        XCTAssertEqual(githubUserDetail.userFullName, "Tom Preston-Werner")
         XCTAssertEqual(githubUserDetail.followers, 22893)
         XCTAssertEqual(githubUserDetail.following, 11)
     }
