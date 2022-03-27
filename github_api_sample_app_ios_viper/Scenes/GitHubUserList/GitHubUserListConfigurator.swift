@@ -6,11 +6,11 @@ protocol GitHubUserListConfigurator {
 
 class GitHubUserListConfiguratorImpl: GitHubUserListConfigurator {
     func configure(dependency: GitHubUserListViewController) {
-        let fetchGitHubUserListRepository = DIContainer.fetchGitHubUserListRepository()
+        let fetchGitHubAPIClientRepository = DIContainer.fetchGitHubAPIClientRepository()
         let router = GitHubUserListRouterImpl(view: dependency)
         let presenter = GitHubUserListPresenterImpl(view: dependency,
                                                     router: router,
-                                                    fetchGitHubUserListUseCase: FetchGitHubUserListUseCase(repository: fetchGitHubUserListRepository))
+                                                    fetchGitHubUserListUseCase: FetchGitHubUserListUseCase(repository: fetchGitHubAPIClientRepository))
         dependency.presenter = presenter
     }
 }

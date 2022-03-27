@@ -10,9 +10,9 @@ struct FetchGitHubUserListUseCaseOutput {
 }
 
 class FetchGitHubUserListUseCase {
-    let repository: FetchGitHubUserListRepository
+    let repository: FetchGitHubAPIClientRepository
 
-    init(repository: FetchGitHubUserListRepository) {
+    init(repository: FetchGitHubAPIClientRepository) {
         self.repository = repository
     }
 
