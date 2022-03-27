@@ -21,7 +21,7 @@ class GitHubUserRepositoryClient: FetchGitHubUserRepositoryRepository {
                     } catch {
                         print(error)
                         DispatchQueue.main.async {
-                            block(nil, error)
+                            block(nil, GitHubClientError.responseParseError(error))
                         }
                     }
                 }
@@ -33,7 +33,7 @@ class GitHubUserRepositoryClient: FetchGitHubUserRepositoryRepository {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    block(nil, error)
+                    block(nil, GitHubClientError.responseParseError(error))
                 }
             }
         })

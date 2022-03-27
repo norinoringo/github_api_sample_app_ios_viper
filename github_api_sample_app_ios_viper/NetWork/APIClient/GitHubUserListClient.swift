@@ -20,7 +20,7 @@ class GitHubUserListClient: FetchGitHubUserListRepository {
                     } catch {
                         print(error)
                         DispatchQueue.main.async {
-                            block(nil, error)
+                            block(nil, GitHubClientError.responseParseError(error))
                         }
                     }
                 }
@@ -32,7 +32,7 @@ class GitHubUserListClient: FetchGitHubUserListRepository {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    block(nil, error)
+                    block(nil, GitHubClientError.responseParseError(error))
                 }
             }
         })
