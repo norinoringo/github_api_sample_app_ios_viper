@@ -314,9 +314,9 @@
 		862BF89427E420C70056A45B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				9A6073EF1D28D2F8BDDD57AA /* AcessTokenInput */,
 				57F3B68AAD4B2044BF448600 /* GitHubUserList */,
 				0FF8944602F351917FB50A37 /* GitHubUserRepository */,
+				9A6073EF1D28D2F8BDDD57AA /* InputAccessToken */,
 				8A02DAEF995A647DA15C8FDC /* Splash */,
 				859376BA31F9A0C4CE37B1A5 /* Top */,
 			);
@@ -463,7 +463,7 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		9A6073EF1D28D2F8BDDD57AA /* AcessTokenInput */ = {
+		9A6073EF1D28D2F8BDDD57AA /* InputAccessToken */ = {
 			isa = PBXGroup;
 			children = (
 				862BF8B027E9D4FC0056A45B /* AcessTokenInput.storyboard */,
@@ -472,7 +472,7 @@
 				C3879649F888BB31987B146A /* AcessTokenInputRouter.swift */,
 				2795F94737B9DEA8DA8F522C /* AccessTokenInputViewController.swift */,
 			);
-			path = AcessTokenInput;
+			path = InputAccessToken;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
