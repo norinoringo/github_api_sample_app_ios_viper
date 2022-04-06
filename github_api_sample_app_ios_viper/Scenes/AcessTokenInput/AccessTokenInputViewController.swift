@@ -25,7 +25,7 @@ class AccessTokenInputViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        log.debug("Top画面起動")
+        log.debug("AcessTokenInput画面起動")
 
         presenter.didFinishPrepare()
     }
@@ -38,10 +38,6 @@ extension AccessTokenInputViewController {}
 // MARK: - Private Methods
 
 extension AccessTokenInputViewController {
-    private func initNavigationController() {
-        navigationItem.hidesBackButton = true
-    }
-
     private func initHeaderLabel() {
         createHeaderLabel()
         activeConstaraintHeaderLabel()
@@ -136,7 +132,6 @@ extension AccessTokenInputViewController {}
 
 extension AccessTokenInputViewController: AccessTokenInputView {
     func initView() {
-        initNavigationController()
         initHeaderLabel()
         initExplainLabel()
         initInputTokenTextField()
