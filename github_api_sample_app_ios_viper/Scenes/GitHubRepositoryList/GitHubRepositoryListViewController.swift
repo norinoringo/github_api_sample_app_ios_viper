@@ -20,10 +20,12 @@ class GitHubRepositoryListViewController: UIViewController {
     var presenter: GitHubRepositoryListPresenter!
 
     var searchKeyword: String = ""
+    var activityIndicatorView = UIActivityIndicatorView()
 
     var githubRepository: [GitHubUserRepositry] = [] {
         didSet {
             tableView.reloadData()
+            stopIndicator()
         }
     }
 
@@ -43,7 +45,26 @@ extension GitHubRepositoryListViewController {}
 
 // MARK: - Private Methods
 
-extension GitHubRepositoryListViewController {}
+extension GitHubRepositoryListViewController {
+    private func initIndicator() {
+        activityIndicatorView.center = view.center
+        activityIndicatorView.style = .large
+        activityIndicatorView.color = .systemGray
+        view.addSubview(activityIndicatorView)
+    }
+
+    private func startIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicatorView.startAnimating()
+        }
+    }
+
+    private func stopIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicatorView.stopAnimating()
+        }
+    }
+}
 
 // MARK: - Public Methods
 
@@ -60,6 +81,9 @@ extension GitHubRepositoryListViewController: GitHubRepositoryListView {
         tableView.dataSource = self
         tableView.register(GitHubUserRepositoryCell.self, forCellReuseIdentifier: "githubUserCell")
         view.addSubview(tableView)
+
+        initIndicator()
+        startIndicator()
     }
 
     func updateGitHubRepository(repository: [GitHubUserRepositry]) {
