@@ -2,6 +2,7 @@ import Foundation
 
 protocol InputSearchRepositoryKeywordPresenter {
     func didFinishPrepare()
+    func searchButtonTapped(keyword: String)
 }
 
 class InputSearchRepositoryKeywordPresenterImpl: InputSearchRepositoryKeywordPresenter {
@@ -17,5 +18,9 @@ class InputSearchRepositoryKeywordPresenterImpl: InputSearchRepositoryKeywordPre
 
     func didFinishPrepare() {
         view.initView()
+    }
+
+    func searchButtonTapped(keyword: String) {
+        router.gotoGitHubRepositoryList(keyword: keyword)
     }
 }

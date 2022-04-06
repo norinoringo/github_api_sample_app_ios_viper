@@ -18,6 +18,7 @@ class InputSearchRepositoryKeywordViewController: UIViewController {
     // MARK: - Variables
 
     var presenter: InputSearchRepositoryKeywordPresenter!
+    var searchKeyword: String = ""
 
     // MARK: - UIViewController Methods
 
@@ -118,7 +119,7 @@ extension InputSearchRepositoryKeywordViewController {
     }
 
     @objc private func searchButtonTapped(_ sender: UIButton) {
-        // presenter.searchButtonTapped(accessToken: accessToken)
+        presenter.searchButtonTapped(keyword: searchKeyword)
     }
 }
 
@@ -147,6 +148,7 @@ extension InputSearchRepositoryKeywordViewController: UITextFieldDelegate {
         let keyword = inputTokenTextField.text ?? ""
         log.debug("キーボード入力操作を完了した")
         log.debug("keyword:\(keyword)")
+        searchKeyword = keyword
     }
 }
 

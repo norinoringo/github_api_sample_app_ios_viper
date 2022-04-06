@@ -2,6 +2,7 @@ import Foundation
 
 protocol GitHubRepositoryListPresenter {
     func didFinishPrepare()
+    func tappedRepositoryCell(repository: GitHubUserRepositry)
 }
 
 class GitHubRepositoryListPresenterImpl: GitHubRepositoryListPresenter {
@@ -16,4 +17,8 @@ class GitHubRepositoryListPresenterImpl: GitHubRepositoryListPresenter {
     }
 
     func didFinishPrepare() {}
+
+    func tappedRepositoryCell(repository: GitHubUserRepositry) {
+        view.openSafariView(url: repository.url)
+    }
 }
