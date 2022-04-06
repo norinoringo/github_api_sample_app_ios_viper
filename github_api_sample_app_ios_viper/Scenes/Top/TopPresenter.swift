@@ -2,6 +2,7 @@ import Foundation
 
 protocol TopPresenter {
     func didFinishPrepare()
+    func tappedCell(apiType: GithubAPITypeCell)
 }
 
 class TopPresenterImpl: TopPresenter {
@@ -15,5 +16,16 @@ class TopPresenterImpl: TopPresenter {
         self.router = router
     }
 
-    func didFinishPrepare() {}
+    func didFinishPrepare() {
+        view.initView()
+    }
+
+    func tappedCell(apiType: GithubAPITypeCell) {
+        switch apiType {
+        case .searchGitHubUser:
+            router.gotoGitHubUserList()
+        case .searchGitHubRepository:
+            router.gotoGitHubRepositoryList()
+        }
+    }
 }
