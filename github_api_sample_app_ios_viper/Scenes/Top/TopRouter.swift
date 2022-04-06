@@ -21,9 +21,8 @@ class TopRouterImpl: TopRouter {
     }
 
     func gotoGitHubRepositoryList() {
-        // 暫定的にTopViewへ遷移させている
-        guard let nextView = R.storyboard.top.instantiateInitialViewController() else { return }
-        let configurator = TopConfiguratorImpl()
+        guard let nextView = R.storyboard.inputSearchRepositoryKeyword.instantiateInitialViewController() else { return }
+        let configurator = InputSearchRepositoryKeywordConfiguratorImpl()
         configurator.configure(dependency: nextView)
         viewController.navigationController?.pushViewController(nextView, animated: true)
     }
