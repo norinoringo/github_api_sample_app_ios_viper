@@ -89,7 +89,7 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
     /// Storyboard `AcessTokenInput`.
     static let acessTokenInput = _R.storyboard.acessTokenInput()
@@ -97,6 +97,8 @@ struct R: Rswift.Validatable {
     static let gitHubUserList = _R.storyboard.gitHubUserList()
     /// Storyboard `GitHubUserRepository`.
     static let gitHubUserRepository = _R.storyboard.gitHubUserRepository()
+    /// Storyboard `InputSearchRepositoryKeyword`.
+    static let inputSearchRepositoryKeyword = _R.storyboard.inputSearchRepositoryKeyword()
     /// Storyboard `Splash`.
     static let splash = _R.storyboard.splash()
     /// Storyboard `Top`.
@@ -120,6 +122,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "GitHubUserRepository", bundle: ...)`
     static func gitHubUserRepository(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.gitHubUserRepository)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "InputSearchRepositoryKeyword", bundle: ...)`
+    static func inputSearchRepositoryKeyword(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.inputSearchRepositoryKeyword)
     }
     #endif
 
@@ -230,6 +239,9 @@ struct _R: Rswift.Validatable {
       try gitHubUserRepository.validate()
       #endif
       #if os(iOS) || os(tvOS)
+      try inputSearchRepositoryKeyword.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try splash.validate()
       #endif
       #if os(iOS) || os(tvOS)
@@ -275,6 +287,22 @@ struct _R: Rswift.Validatable {
 
       let bundle = R.hostingBundle
       let name = "GitHubUserRepository"
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct inputSearchRepositoryKeyword: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = InputSearchRepositoryKeywordViewController
+
+      let bundle = R.hostingBundle
+      let name = "InputSearchRepositoryKeyword"
 
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
