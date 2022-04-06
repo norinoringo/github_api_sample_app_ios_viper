@@ -89,8 +89,10 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
+    /// Storyboard `AcessTokenInput`.
+    static let acessTokenInput = _R.storyboard.acessTokenInput()
     /// Storyboard `GitHubUserList`.
     static let gitHubUserList = _R.storyboard.gitHubUserList()
     /// Storyboard `GitHubUserRepository`.
@@ -99,6 +101,13 @@ struct R: Rswift.Validatable {
     static let splash = _R.storyboard.splash()
     /// Storyboard `Top`.
     static let top = _R.storyboard.top()
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "AcessTokenInput", bundle: ...)`
+    static func acessTokenInput(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.acessTokenInput)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIStoryboard(name: "GitHubUserList", bundle: ...)`
@@ -212,6 +221,9 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       #if os(iOS) || os(tvOS)
+      try acessTokenInput.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try gitHubUserList.validate()
       #endif
       #if os(iOS) || os(tvOS)
@@ -224,6 +236,22 @@ struct _R: Rswift.Validatable {
       try top.validate()
       #endif
     }
+
+    #if os(iOS) || os(tvOS)
+    struct acessTokenInput: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = AccessTokenInputViewController
+
+      let bundle = R.hostingBundle
+      let name = "AcessTokenInput"
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     struct gitHubUserList: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {

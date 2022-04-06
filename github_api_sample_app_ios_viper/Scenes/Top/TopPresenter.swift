@@ -2,7 +2,6 @@ import Foundation
 
 protocol TopPresenter {
     func didFinishPrepare()
-    func searchButtonTapped(accessToken: String)
 }
 
 class TopPresenterImpl: TopPresenter {
@@ -16,11 +15,5 @@ class TopPresenterImpl: TopPresenter {
         self.router = router
     }
 
-    func didFinishPrepare() {
-        view.initView()
-    }
-
-    func searchButtonTapped(accessToken: String) {
-        router.gotoGitHubUserList(accessToken: accessToken)
-    }
+    func didFinishPrepare() {}
 }
