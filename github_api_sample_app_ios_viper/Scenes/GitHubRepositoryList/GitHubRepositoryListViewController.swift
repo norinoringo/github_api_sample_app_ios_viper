@@ -33,8 +33,7 @@ class GitHubRepositoryListViewController: UIViewController {
         super.viewDidLoad()
         log.debug("GitHubRepositoryList画面起動")
         log.debug("検索キーワード:\(searchKeyword)")
-
-        presenter.didFinishPrepare()
+        presenter.didFinishPrepare(searchKeyword: searchKeyword)
     }
 }
 
@@ -55,9 +54,12 @@ extension GitHubRepositoryListViewController {}
 extension GitHubRepositoryListViewController: GitHubRepositoryListView {
     func initView() {
         navigationItem.title = "GitHubRepository"
+        // テーブルビュー初期化、関連付け
+        tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(GitHubUserRepositoryCell.self, forCellReuseIdentifier: "githubUserCell")
+        view.addSubview(tableView)
     }
 
     func updateGitHubRepository(repository: [GitHubUserRepositry]) {
@@ -75,7 +77,7 @@ extension GitHubRepositoryListViewController: GitHubRepositoryListView {
 
 extension GitHubRepositoryListViewController: UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        githubRepository.count
+        return githubRepository.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
