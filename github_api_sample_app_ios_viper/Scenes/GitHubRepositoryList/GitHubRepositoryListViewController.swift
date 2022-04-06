@@ -6,6 +6,7 @@ protocol GitHubRepositoryListView {
     func initView()
     func updateGitHubRepository(repository: [GitHubUserRepositry])
     func openSafariView(url: String)
+    func showErrorDialog()
 }
 
 class GitHubRepositoryListViewController: UIViewController {
@@ -26,6 +27,9 @@ class GitHubRepositoryListViewController: UIViewController {
         didSet {
             tableView.reloadData()
             stopIndicator()
+            if githubRepository.isEmpty {
+                showErrorDialog()
+            }
         }
     }
 
@@ -94,6 +98,18 @@ extension GitHubRepositoryListViewController: GitHubRepositoryListView {
         guard let url = URL(string: url) else { return }
         let vc = SFSafariViewController(url: url)
         present(vc, animated: true, completion: nil)
+    }
+
+    func showErrorDialog() {
+        stopIndicator()
+        let alert = UIAlertController(title: "情報の取得に失敗しました", message: "前の画面で再度検索してください。", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { _ in
+            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(ok)
+
+        present(alert, animated: true, completion: nil)
     }
 }
 

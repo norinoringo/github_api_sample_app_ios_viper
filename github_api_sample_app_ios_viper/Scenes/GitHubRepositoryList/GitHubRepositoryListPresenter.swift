@@ -36,6 +36,7 @@ class GitHubRepositoryListPresenterImpl: GitHubRepositoryListPresenter {
                 let githubRepository: [GitHubUserRepositry] = result.githubRepository.items
                 self.view.updateGitHubRepository(repository: githubRepository)
             }.catch { _ in
+                self.view.showErrorDialog()
             }
     }
 }
