@@ -74,9 +74,9 @@ extension InputSearchRepositoryKeywordViewController {
         explainLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
 
-    private func initInputTokenTextField() {
+    private func initInputKeywordTextField() {
         createInputTokenTextField()
-        activeConstaraintInputTokenTextField()
+        activeConstaraintInputKeyWordTextField()
         setHideKeyboardTapped()
     }
 
@@ -89,7 +89,7 @@ extension InputSearchRepositoryKeywordViewController {
         view.addSubview(inputTokenTextField)
     }
 
-    private func activeConstaraintInputTokenTextField() {
+    private func activeConstaraintInputKeyWordTextField() {
         inputTokenTextField.topAnchor.constraint(equalTo: explainLabel.bottomAnchor, constant: 20).isActive = true
         inputTokenTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         inputTokenTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
@@ -132,7 +132,7 @@ extension InputSearchRepositoryKeywordViewController: InputSearchRepositoryKeywo
     func initView() {
         initHeaderLabel()
         initExplainLabel()
-        initInputTokenTextField()
+        initInputKeywordTextField()
         initSearchButton()
     }
 }
