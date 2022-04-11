@@ -20,6 +20,13 @@ class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
         req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
         doURLSessionTask(req: req, block: block)
     }
+
+    func fetchGitHubRepository(input: FetchGitHubRepositoryListUseCaseInput, block: @escaping (GitHubRepositry?, Error?) -> Void) {
+        let searchKeyword = input.searchKeyword
+        let keywordEncodedString = searchKeyword?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        var req = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=\(keywordEncodedString ?? "")")!)
+        doURLSessionTask(req: req, block: block)
+    }
 }
 
 extension GitHubUserAPIClient {
