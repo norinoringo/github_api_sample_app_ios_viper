@@ -2,7 +2,7 @@ import Foundation
 
 protocol TopPresenter {
     func didFinishPrepare()
-    func searchButtonTapped(accessToken: String)
+    func tappedCell(apiType: GithubAPITypeCell)
 }
 
 class TopPresenterImpl: TopPresenter {
@@ -20,7 +20,12 @@ class TopPresenterImpl: TopPresenter {
         view.initView()
     }
 
-    func searchButtonTapped(accessToken: String) {
-        router.gotoGitHubUserList(accessToken: accessToken)
+    func tappedCell(apiType: GithubAPITypeCell) {
+        switch apiType {
+        case .searchGitHubUser:
+            router.gotoGitHubUserList()
+        case .searchGitHubRepository:
+            router.gotoGitHubRepositoryList()
+        }
     }
 }

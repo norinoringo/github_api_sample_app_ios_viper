@@ -5,13 +5,15 @@ protocol TopView {
     func initView()
 }
 
+enum GithubAPITypeCell {
+    case searchGitHubUser
+    case searchGitHubRepository
+}
+
 class TopViewController: UIViewController {
     // MARK: - Constants
 
-    let headerLabel = UILabel()
-    let explainLabel = UILabel()
-    let inputTokenTextField = UITextField()
-    let searchButton = UIButton()
+    private let tableView = UITableView()
 
     // MARK: - Outlets
 
@@ -19,7 +21,7 @@ class TopViewController: UIViewController {
 
     var presenter: TopPresenter!
 
-    var accessToken: String = ""
+    private var githubAPICellList: [GithubAPITypeCell] = []
 
     // MARK: - UIViewController Methods
 
@@ -42,89 +44,9 @@ extension TopViewController {
         navigationItem.hidesBackButton = true
     }
 
-    private func initHeaderLabel() {
-        createHeaderLabel()
-        activeConstaraintHeaderLabel()
-    }
-
-    private func createHeaderLabel() {
-        headerLabel.text = "GitHubユーザー検索アプリ"
-        headerLabel.textAlignment = .left
-        headerLabel.font = UIFont.systemFont(ofSize: 20.0)
-        headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(headerLabel)
-    }
-
-    private func activeConstaraintHeaderLabel() {
-        headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        headerLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        headerLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-    }
-
-    private func initExplainLabel() {
-        createExplainLabel()
-        activeConstaraintExplainLabel()
-    }
-
-    private func createExplainLabel() {
-        explainLabel.text = "GitHubの personal access token \nを入力してください。"
-        explainLabel.numberOfLines = 0
-        explainLabel.textAlignment = .left
-        explainLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(explainLabel)
-    }
-
-    private func activeConstaraintExplainLabel() {
-        explainLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 20).isActive = true
-        explainLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        explainLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-    }
-
-    private func initInputTokenTextField() {
-        createInputTokenTextField()
-        activeConstaraintInputTokenTextField()
-        setHideKeyboardTapped()
-    }
-
-    private func createInputTokenTextField() {
-        inputTokenTextField.borderStyle = .roundedRect
-        inputTokenTextField.placeholder = "personal access token"
-        inputTokenTextField.textAlignment = .left
-        inputTokenTextField.translatesAutoresizingMaskIntoConstraints = false
-        inputTokenTextField.delegate = self
-        view.addSubview(inputTokenTextField)
-    }
-
-    private func activeConstaraintInputTokenTextField() {
-        inputTokenTextField.topAnchor.constraint(equalTo: explainLabel.bottomAnchor, constant: 20).isActive = true
-        inputTokenTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        inputTokenTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-    }
-
-    private func initSearchButton() {
-        createSearchButton()
-        activeConstaraintSearchButton()
-    }
-
-    private func createSearchButton() {
-        searchButton.setTitle("検索", for: UIControl.State.normal)
-        searchButton.setTitleColor(UIColor.systemBlue, for: .normal)
-        searchButton.translatesAutoresizingMaskIntoConstraints = false
-
-        searchButton.addTarget(self,
-                               action: #selector(searchButtonTapped(_:)),
-                               for: .touchUpInside)
-        view.addSubview(searchButton)
-    }
-
-    private func activeConstaraintSearchButton() {
-        searchButton.topAnchor.constraint(equalTo: inputTokenTextField.bottomAnchor, constant: 20).isActive = true
-        searchButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        searchButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-    }
-
-    @objc private func searchButtonTapped(_ sender: UIButton) {
-        presenter.searchButtonTapped(accessToken: accessToken)
+    private func initGitHubAPICellList() {
+        githubAPICellList.append(GithubAPITypeCell.searchGitHubUser)
+        githubAPICellList.append(GithubAPITypeCell.searchGitHubRepository)
     }
 }
 
@@ -136,36 +58,38 @@ extension TopViewController {}
 
 extension TopViewController: TopView {
     func initView() {
+        title = "GitHub検索アプリ"
+        // テーブルビュー初期化、関連付け
+        tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(GitHubAPICell.self, forCellReuseIdentifier: "githubAPICell")
+        view.addSubview(tableView)
+
         initNavigationController()
-        initHeaderLabel()
-        initExplainLabel()
-        initInputTokenTextField()
-        initSearchButton()
+        initGitHubAPICellList()
     }
 }
 
-extension TopViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return true
+// MARK: - UITableViewController Methods
+
+extension TopViewController: UITableViewDataSource {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        githubAPICellList.count
     }
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        accessToken = inputTokenTextField.text ?? ""
-        log.debug("キーボード入力操作を完了した")
-        log.debug("accessToken:\(accessToken)")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "githubAPICell", for: indexPath) as? GitHubAPICell
+        cell?.createCell(cellType: githubAPICellList[indexPath.row])
+        return cell ?? GitHubAPICell()
     }
 }
 
-extension TopViewController {
-    func setHideKeyboardTapped() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
+// MARK: - UITableViewDelegate Methods
 
-    @objc private func hideKeyboard() {
-        view.endEditing(true)
-        // log.debug("キーボード外の領域をタップしたのでキーボードを非表示にする")
+extension TopViewController: UITableViewDelegate {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let apiType = githubAPICellList[indexPath.row]
+        presenter.tappedCell(apiType: apiType)
     }
 }
