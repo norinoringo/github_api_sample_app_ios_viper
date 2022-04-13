@@ -384,6 +384,8 @@
 		862BF89727E421280056A45B /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				862BF8C327EAE57D0056A45B /* GitHubAPIError.swift */,
+				862BF8C127EAE4980056A45B /* GitHubClientError.swift */,
 				86AAC73B27FD4BB400EE6FEC /* GitHubRepository.swift */,
 				862BF8B827EACED70056A45B /* GitHubUser.swift */,
 				86A5074627EB3FC9000A13F6 /* GitHubUserDetail.swift */,
@@ -439,7 +441,6 @@
 		862BF89D27E4219B0056A45B /* API */ = {
 			isa = PBXGroup;
 			children = (
-				862BF8C327EAE57D0056A45B /* GitHubAPIError.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -448,7 +449,6 @@
 			isa = PBXGroup;
 			children = (
 				86C2D84927F04F7B00A78F9A /* GitHubAPIClient.swift */,
-				862BF8C127EAE4980056A45B /* GitHubClientError.swift */,
 			);
 			path = APIClient;
 			sourceTree = "<group>";
