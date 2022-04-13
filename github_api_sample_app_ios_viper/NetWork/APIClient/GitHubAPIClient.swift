@@ -1,6 +1,12 @@
 import Foundation
 
 class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
+    private var httpClient: HTTPClient
+
+    public init(httpClient: HTTPClient) {
+        self.httpClient = httpClient
+    }
+
     func fetchGitHubUserList(input: FetchGitHubUserListUseCaseInput, block: @escaping ([GitHubUser]?, Error?) -> Void) {
         var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
         req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
@@ -30,36 +36,38 @@ class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
 }
 
 extension GitHubUserAPIClient {
-    private func doURLSessionTask<ResponseType: Decodable>(req: URLRequest, block: @escaping (ResponseType?, Error?) -> Void) {
-        let task: URLSessionTask = URLSession.shared.dataTask(with: req, completionHandler: { data, response, error in
-            if let error = error {
+    func doURLSessionTask<ResponseType: Decodable>(req: URLRequest, block: @escaping (ResponseType?, Error?) -> Void) {
+        httpClient.doURLSessionTask(req: req) { result in
+
+            switch result {
+            case let .failure(error):
                 log.debug("通信エラー:\(error)")
                 block(nil, error)
                 return
-            }
-            log.debug("\(ResponseType.self)_response:\(response)")
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode >= 300 || response.statusCode < 200 {
-                    do {
-                        let dataMessage = try JSONDecoder().decode(GitHubAPIError.self, from: data!)
-                        log.debug("エラーレスポンスのパース成功")
-                        block(nil, dataMessage)
-                    } catch {
-                        log.debug("レスポンスのパースエラー:\(error)")
-                        block(nil, error)
+            case let .success((data, urlResponse)):
+
+                log.debug("\(ResponseType.self)_response:\(urlResponse)")
+                if let urlResponse = urlResponse as? HTTPURLResponse {
+                    if urlResponse.statusCode >= 300 || urlResponse.statusCode < 200 {
+                        do {
+                            let dataMessage = try JSONDecoder().decode(GitHubAPIError.self, from: data)
+                            log.debug("エラーレスポンスのパース成功")
+                            block(nil, dataMessage)
+                        } catch {
+                            log.debug("レスポンスのパースエラー:\(error)")
+                            block(nil, error)
+                        }
                     }
                 }
+                do {
+                    let response = try JSONDecoder().decode(ResponseType.self, from: data)
+                    log.debug("\(ResponseType.self)レスポンスのパース成功")
+                    block(response, nil)
+                } catch {
+                    log.debug("レスポンスのパースエラー:\(error)")
+                    block(nil, error)
+                }
             }
-            do {
-                let response = try JSONDecoder().decode(ResponseType.self, from: data!)
-                log.debug("\(ResponseType.self)レスポンスのパース成功")
-                block(response, nil)
-            } catch {
-                log.debug("レスポンスのパースエラー:\(error)")
-                block(nil, error)
-            }
-        })
-        // URLSessionTaskを実行する
-        task.resume()
+        }
     }
 }

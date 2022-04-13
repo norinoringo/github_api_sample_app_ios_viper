@@ -14,9 +14,9 @@ extension DIContainer {
         fetchGitHubAPIClientRepositoryCreater = {
             switch type {
             case .inMemory:
-                return GitHubUserAPIClient()
+                return GitHubUserAPIClient(httpClient: URLSession.shared)
             case .real:
-                return GitHubUserAPIClient()
+                return GitHubUserAPIClient(httpClient: URLSession.shared)
             }
         }
     }
