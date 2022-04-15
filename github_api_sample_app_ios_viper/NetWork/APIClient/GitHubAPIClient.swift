@@ -1,10 +1,10 @@
 import Foundation
 
 class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
-    private var httpClient: HTTPClient
+    private var httpClientProtocol: HTTPClientProtocol
 
-    public init(httpClient: HTTPClient) {
-        self.httpClient = httpClient
+    public init(httpClientProtocol: HTTPClientProtocol) {
+        self.httpClientProtocol = httpClientProtocol
     }
 
     func fetchGitHubUserList(input: FetchGitHubUserListUseCaseInput, block: @escaping ([GitHubUser]?, Error?) -> Void) {
@@ -37,7 +37,7 @@ class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
 
 extension GitHubUserAPIClient {
     func doURLSessionTask<ResponseType: Decodable>(req: URLRequest, block: @escaping (ResponseType?, Error?) -> Void) {
-        httpClient.doURLSessionTask(req: req) { result in
+        httpClientProtocol.doURLSessionTask(req: req) { result in
 
             switch result {
             case let .failure(error):
