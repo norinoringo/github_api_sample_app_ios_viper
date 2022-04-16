@@ -7,65 +7,61 @@ class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
         self.httpClientProtocol = httpClientProtocol
     }
 
-    func fetchGitHubUserList(input: FetchGitHubUserListUseCaseInput, block: @escaping ([GitHubUser]?, Error?) -> Void) {
+    func fetchGitHubUserList(input: FetchGitHubUserListUseCaseInput, completion: @escaping (Result<[GitHubUser], Error>) -> Void) {
         var req = URLRequest(url: URL(string: "https://api.github.com/users")!)
         req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
-        doURLSessionTask(req: req, block: block)
+        doURLSessionTask(req: req, completion: completion)
     }
 
-    func fetchGitHubUserDetail(input: FetchGitHubUserDetailUseCaseInput, block: @escaping (GitHubUserDetail?, Error?) -> Void) {
+    func fetchGitHubUserDetail(input: FetchGitHubUserDetailUseCaseInput, completion: @escaping (Result<GitHubUserDetail, Error>) -> Void) {
         let userName = input.githubUser.login
         var req = URLRequest(url: URL(string: "https://api.github.com/users/\(userName)")!)
         req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
-        doURLSessionTask(req: req, block: block)
+        doURLSessionTask(req: req, completion: completion)
     }
 
-    func fetchGitHubUserRepository(input: FetchGitHubUserRepositoryUseCaseInput, block: @escaping ([GitHubUserRepositry]?, Error?) -> Void) {
+    func fetchGitHubUserRepository(input: FetchGitHubUserRepositoryUseCaseInput, completion: @escaping (Result<[GitHubUserRepositry], Error>) -> Void) {
         let userName = input.githubUser.login
         var req = URLRequest(url: URL(string: "https://api.github.com/users/\(userName)/repos")!)
         req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")
-        doURLSessionTask(req: req, block: block)
+        doURLSessionTask(req: req, completion: completion)
     }
 
-    func fetchGitHubRepository(input: FetchGitHubRepositoryListUseCaseInput, block: @escaping (GitHubRepositry?, Error?) -> Void) {
+    func fetchGitHubRepository(input: FetchGitHubRepositoryListUseCaseInput, completion: @escaping (Result<GitHubRepositry, Error>) -> Void) {
         let searchKeyword = input.searchKeyword
         let keywordEncodedString = searchKeyword?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         var req = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=\(keywordEncodedString ?? "")")!)
-        doURLSessionTask(req: req, block: block)
+        doURLSessionTask(req: req, completion: completion)
     }
 }
 
 extension GitHubUserAPIClient {
-    func doURLSessionTask<ResponseType: Decodable>(req: URLRequest, block: @escaping (ResponseType?, Error?) -> Void) {
+    func doURLSessionTask<ResponseType: Decodable>(req: URLRequest, completion: @escaping (Result<ResponseType, Error>) -> Void) {
         httpClientProtocol.doURLSessionTask(req: req) { result in
-
             switch result {
             case let .failure(error):
                 log.debug("通信エラー:\(error)")
-                block(nil, error)
+                completion(Result.failure(error))
                 return
             case let .success((data, urlResponse)):
-
                 log.debug("\(ResponseType.self)_response:\(urlResponse)")
-                if let urlResponse = urlResponse as? HTTPURLResponse {
-                    if urlResponse.statusCode >= 300 || urlResponse.statusCode < 200 {
-                        do {
-                            let dataMessage = try JSONDecoder().decode(GitHubAPIError.self, from: data)
-                            log.debug("エラーレスポンスのパース成功")
-                            block(nil, dataMessage)
-                        } catch {
-                            log.debug("レスポンスのパースエラー:\(error)")
-                            block(nil, error)
-                        }
+                if urlResponse.statusCode >= 300 || urlResponse.statusCode < 200 {
+                    do {
+                        let dataMessage = try JSONDecoder().decode(GitHubAPIError.self, from: data)
+                        log.debug("エラーレスポンスのパース成功")
+                        completion(Result.failure(dataMessage))
+                    } catch {
+                        log.debug("エラーレスポンスのパースエラー:\(error)")
+                        completion(Result.failure(error))
                     }
                 }
                 do {
                     let response = try JSONDecoder().decode(ResponseType.self, from: data)
                     log.debug("\(ResponseType.self)レスポンスのパース成功")
-                    block(response, nil)
+                    completion(Result.success(response))
                 } catch {
                     log.debug("レスポンスのパースエラー:\(error)")
-                    block(nil, error)
+                    completion(Result.failure(error))
                 }
             }
         }
