@@ -76,4 +76,25 @@ extension GitHubAPIClientTest {
         }
         wait(for: [apiExpection], timeout: 3)
     }
+
+    func testFetchGitHubRepositoryWithErrorResponse() {
+        let apiExpection = expectation(description: "wait for finish")
+        stubClient.result = makeHTTPClientResult(statusCode: 400,
+                                                 json: GitHubAPIErrorTest.exampleJSON)
+        let input = FetchGitHubRepositoryListUseCaseInput(searchKeyword: "テスト")
+        githubAPIClient.fetchGitHubRepository(input: input) { result in
+            switch result {
+            case let .failure(.apiError(response)):
+                let error = response.errors.first
+                XCTAssertEqual(response.message, "Validation Failed")
+                XCTAssertEqual(error?.resource, "Search")
+                XCTAssertEqual(error?.field, "q")
+                XCTAssertEqual(error?.code, "missing")
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpection.fulfill()
+        }
+        wait(for: [apiExpection], timeout: 3)
+    }
 }
