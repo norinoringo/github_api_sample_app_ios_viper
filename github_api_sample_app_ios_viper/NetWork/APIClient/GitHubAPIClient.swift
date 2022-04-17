@@ -42,26 +42,26 @@ extension GitHubAPIClient {
             case let .failure(error):
                 log.debug("通信エラー:\(error)")
                 completion(Result.failure(.connectionError(error)))
-                return
             case let .success((data, urlResponse)):
                 log.debug("\(ResponseType.self)_response:\(urlResponse)")
                 if urlResponse.statusCode >= 300 || urlResponse.statusCode < 200 {
                     do {
                         let dataMessage = try JSONDecoder().decode(GitHubAPIError.self, from: data)
                         log.debug("エラーレスポンスのパース成功")
-                        completion(Result.failure(.responseParseError(dataMessage)))
+                        completion(Result.failure(.apiError(dataMessage)))
                     } catch {
                         log.debug("エラーレスポンスのパースエラー:\(error)")
                         completion(Result.failure(.responseParseError(error)))
                     }
-                }
-                do {
-                    let response = try JSONDecoder().decode(ResponseType.self, from: data)
-                    log.debug("\(ResponseType.self)レスポンスのパース成功")
-                    completion(Result.success(response))
-                } catch {
-                    log.debug("レスポンスのパースエラー:\(error)")
-                    completion(Result.failure(.responseParseError(error)))
+                } else {
+                    do {
+                        let response = try JSONDecoder().decode(ResponseType.self, from: data)
+                        log.debug("\(ResponseType.self)レスポンスのパース成功")
+                        completion(Result.success(response))
+                    } catch {
+                        log.debug("レスポンスのパースエラー:\(error)")
+                        completion(Result.failure(.responseParseError(error)))
+                    }
                 }
             }
         }
