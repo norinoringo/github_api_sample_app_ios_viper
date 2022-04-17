@@ -59,4 +59,21 @@ extension GitHubAPIClientTest {
         }
         wait(for: [apiExpectation], timeout: 3)
     }
+
+    func testFetchGitHubRepositoryWithResponseParseError() {
+        let apiExpection = expectation(description: "wait for finish")
+        stubClient.result = makeHTTPClientResult(statusCode: 200,
+                                                 json: "{}")
+        let input = FetchGitHubRepositoryListUseCaseInput(searchKeyword: "テスト")
+        githubAPIClient.fetchGitHubRepository(input: input) { result in
+            switch result {
+            case .failure(.responseParseError):
+                break
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpection.fulfill()
+        }
+        wait(for: [apiExpection], timeout: 3)
+    }
 }
