@@ -1,6 +1,6 @@
 import Foundation
 
-extension URLSession: HTTPClientProtocol {
+extension URLSession: HTTPClient {
     public func doURLSessionTask(req: URLRequest, completion: @escaping (Result<(Data, HTTPURLResponse), Error>) -> Void) {
         let task: URLSessionTask = URLSession.shared.dataTask(with: req) { data, response, error in
             switch (data, response, error) {

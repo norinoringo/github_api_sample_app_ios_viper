@@ -1,6 +1,6 @@
 import Foundation
 
-class StubAPIClient: HTTPClientProtocol {
+class StubAPIClient: HTTPClient {
     var result: Result<(Data, HTTPURLResponse), Error> = .success((Data(), HTTPURLResponse(url: URL(string: "https://github.com")!,
                                                                                            statusCode: 200,
                                                                                            httpVersion: nil,

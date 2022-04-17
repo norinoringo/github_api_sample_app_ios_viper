@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol HTTPClientProtocol {
+public protocol HTTPClient {
     func doURLSessionTask(req: URLRequest, completion: @escaping (Result<(Data, HTTPURLResponse), Error>) -> Void)
 }

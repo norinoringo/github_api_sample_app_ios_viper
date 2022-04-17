@@ -1,10 +1,10 @@
 import Foundation
 
-class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
-    private var httpClientProtocol: HTTPClientProtocol
+class GitHubAPIClient: FetchGitHubAPIClientRepository {
+    private var httpClient: HTTPClient
 
-    public init(httpClientProtocol: HTTPClientProtocol) {
-        self.httpClientProtocol = httpClientProtocol
+    public init(httpClient: HTTPClient) {
+        self.httpClient = httpClient
     }
 
     func fetchGitHubUserList(input: FetchGitHubUserListUseCaseInput, completion: @escaping (Result<[GitHubUser], Error>) -> Void) {
@@ -35,9 +35,9 @@ class GitHubUserAPIClient: FetchGitHubAPIClientRepository {
     }
 }
 
-extension GitHubUserAPIClient {
+extension GitHubAPIClient {
     func doURLSessionTask<ResponseType: Decodable>(req: URLRequest, completion: @escaping (Result<ResponseType, Error>) -> Void) {
-        httpClientProtocol.doURLSessionTask(req: req) { result in
+        httpClient.doURLSessionTask(req: req) { result in
             switch result {
             case let .failure(error):
                 log.debug("通信エラー:\(error)")
