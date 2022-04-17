@@ -43,4 +43,20 @@ extension GitHubAPIClientTest {
         }
         wait(for: [apiExpectation], timeout: 3)
     }
+
+    func testFetchGitHubRepositoryWithFailuerByConnectionError() {
+        let apiExpectation = expectation(description: "wait for finish")
+        stubClient.result = .failure(URLError(.cannotConnectToHost))
+        let input = FetchGitHubRepositoryListUseCaseInput(searchKeyword: "テスト")
+        githubAPIClient.fetchGitHubRepository(input: input) { result in
+            switch result {
+            case .failure(.connectionError):
+                break
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        wait(for: [apiExpectation], timeout: 3)
+    }
 }
