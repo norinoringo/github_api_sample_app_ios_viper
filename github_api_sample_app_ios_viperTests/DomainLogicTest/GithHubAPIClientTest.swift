@@ -277,11 +277,83 @@ extension GitHubAPIClientTest {
 }
 
 extension GitHubAPIClientTest {
-    func testFetchGitHubUserRepositoryWithSuccess() {}
+    func testFetchGitHubUserRepositoryWithSuccess() {
+        let apiExpectation = expectation(description: "wait for finish")
+        stubClient.result = makeHTTPClientResult(statusCode: 200,
+                                                 json: GitHubUserRepositoryTest.exampleJson)
+        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
+                                                          githubUser: makeGitHubUser())
+        githubAPIClient.fetchGitHubUserRepository(input: input) { result in
+            switch result {
+            case let .success(response):
+                let repository = response.first
+                XCTAssertEqual(repository?.repositoryName, "30daysoflaptops.github.io")
+                XCTAssertEqual(repository?.language, "CSS")
+                XCTAssertEqual(repository?.stargazersCount, 7)
+                XCTAssertEqual(repository?.description, nil)
+                XCTAssertEqual(repository?.fork, false)
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        wait(for: [apiExpectation], timeout: 3)
+    }
 
-    func testFetchGitHubUserRepositoryWithFailuerByConnectionError() {}
+    func testFetchGitHubUserRepositoryWithFailuerByConnectionError() {
+        let apiExpectation = expectation(description: "wait for finish")
+        stubClient.result = .failure(URLError(.cannotConnectToHost))
+        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
+                                                          githubUser: makeGitHubUser())
+        githubAPIClient.fetchGitHubUserRepository(input: input) { result in
+            switch result {
+            case .failure(.connectionError):
+                break
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        wait(for: [apiExpectation], timeout: 3)
+    }
 
-    func testFetchGitHubUserRepositoryWithResponseParseError() {}
+    func testFetchGitHubUserRepositoryWithResponseParseError() {
+        let apiExpectation = expectation(description: "wait for finish")
+        stubClient.result = makeHTTPClientResult(statusCode: 200,
+                                                 json: "{}")
+        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
+                                                          githubUser: makeGitHubUser())
+        githubAPIClient.fetchGitHubUserRepository(input: input) { result in
+            switch result {
+            case .failure(.responseParseError):
+                break
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        wait(for: [apiExpectation], timeout: 3)
+    }
 
-    func testFetchGitHubUserRepositoryWithErrorResponse() {}
+    func testFetchGitHubUserRepositoryWithErrorResponse() {
+        let apiExpectation = expectation(description: "wait for finish")
+        stubClient.result = makeHTTPClientResult(statusCode: 400,
+                                                 json: GitHubAPIErrorTest.exampleJSON)
+        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
+                                                          githubUser: makeGitHubUser())
+        githubAPIClient.fetchGitHubUserRepository(input: input) { result in
+            switch result {
+            case let .failure(.apiError(response)):
+                let error = response.errors.first
+                XCTAssertEqual(response.message, "Validation Failed")
+                XCTAssertEqual(error?.resource, "Search")
+                XCTAssertEqual(error?.field, "q")
+                XCTAssertEqual(error?.code, "missing")
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        wait(for: [apiExpectation], timeout: 3)
+    }
 }
