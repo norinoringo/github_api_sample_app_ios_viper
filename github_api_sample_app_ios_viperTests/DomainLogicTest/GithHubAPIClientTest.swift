@@ -189,3 +189,99 @@ extension GitHubAPIClientTest {
         wait(for: [apiExpectation], timeout: 3)
     }
 }
+
+extension GitHubAPIClientTest {
+    private func makeGitHubUser() -> GitHubUser {
+        let githubUser = GitHubUser(login: "", id: 0, nodeId: "", avatarUrl: "", gravatarId: "", url: "", htmlUrl: "", followersUrl: "", followingUrl: "", gistsUrl: "", starredUrl: "", subscriptionsUrl: "", organizationsUrl: "", reposUrl: "", eventsUrl: "", receivedEventsUrl: "", type: "", siteDomain: true)
+        return githubUser
+    }
+
+    func testFetchGitHubUserDetailWithSuccess() {
+        let apiExpectation = expectation(description: "wait for finish")
+        stubClient.result = makeHTTPClientResult(statusCode: 200,
+                                                 json: GitHubUserDetailTest.exampleJson)
+        let input = FetchGitHubUserDetailUseCaseInput(accessToken: "test",
+                                                      githubUser: makeGitHubUser())
+        githubAPIClient.fetchGitHubUserDetail(input: input) { result in
+            switch result {
+            case let .success(response):
+                XCTAssertEqual(response.login, "mojombo")
+                XCTAssertEqual(response.avatarUrl, "https://avatars.githubusercontent.com/u/1?v=4")
+                XCTAssertEqual(response.userFullName, "Tom Preston-Werner")
+                XCTAssertEqual(response.followers, 22893)
+                XCTAssertEqual(response.following, 11)
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        wait(for: [apiExpectation], timeout: 3)
+    }
+
+    func testFetchGitHubUserDetailWithFailuerByConnectionError() {
+        let apiExpectation = expectation(description: "wait for finish")
+        stubClient.result = .failure(URLError(.cannotConnectToHost))
+        let input = FetchGitHubUserDetailUseCaseInput(accessToken: "test",
+                                                      githubUser: makeGitHubUser())
+        githubAPIClient.fetchGitHubUserDetail(input: input) { result in
+            switch result {
+            case .failure(.connectionError):
+                break
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        wait(for: [apiExpectation], timeout: 3)
+    }
+
+    func testFetchGitHubUserDetailWithResponseParseError() {
+        let apiExpectation = expectation(description: "wait for finish")
+        stubClient.result = makeHTTPClientResult(statusCode: 200,
+                                                 json: "{}")
+        let input = FetchGitHubUserDetailUseCaseInput(accessToken: "test",
+                                                      githubUser: makeGitHubUser())
+        githubAPIClient.fetchGitHubUserDetail(input: input) { result in
+            switch result {
+            case .failure(.responseParseError):
+                break
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        wait(for: [apiExpectation], timeout: 3)
+    }
+
+    func testFetchGitHubUserDetailWithErrorResponse() {
+        let apiExpectation = expectation(description: "wait for finish")
+        stubClient.result = makeHTTPClientResult(statusCode: 400,
+                                                 json: GitHubAPIErrorTest.exampleJSON)
+        let input = FetchGitHubUserDetailUseCaseInput(accessToken: "test",
+                                                      githubUser: makeGitHubUser())
+        githubAPIClient.fetchGitHubUserDetail(input: input) { result in
+            switch result {
+            case let .failure(.apiError(response)):
+                let error = response.errors.first
+                XCTAssertEqual(response.message, "Validation Failed")
+                XCTAssertEqual(error?.resource, "Search")
+                XCTAssertEqual(error?.field, "q")
+                XCTAssertEqual(error?.code, "missing")
+            default:
+                XCTFail("unexpected result:\(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        wait(for: [apiExpectation], timeout: 3)
+    }
+}
+
+extension GitHubAPIClientTest {
+    func testFetchGitHubUserRepositoryWithSuccess() {}
+
+    func testFetchGitHubUserRepositoryWithFailuerByConnectionError() {}
+
+    func testFetchGitHubUserRepositoryWithResponseParseError() {}
+
+    func testFetchGitHubUserRepositoryWithErrorResponse() {}
+}
