@@ -9,7 +9,7 @@ protocol GitHubRepositoryListView {
     func showErrorDialog()
 }
 
-class GitHubRepositoryListViewController: UIViewController {
+class GitHubRepositoryListViewController: BaseViewController {
     // MARK: - Constants
 
     private let tableView = UITableView()
@@ -21,15 +21,11 @@ class GitHubRepositoryListViewController: UIViewController {
     var presenter: GitHubRepositoryListPresenter!
 
     var searchKeyword: String = ""
-    var activityIndicatorView = UIActivityIndicatorView()
 
     var githubRepository: [GitHubUserRepositry] = [] {
         didSet {
             tableView.reloadData()
             stopIndicator()
-            if githubRepository.isEmpty {
-                showErrorDialog()
-            }
         }
     }
 
@@ -48,27 +44,6 @@ class GitHubRepositoryListViewController: UIViewController {
 extension GitHubRepositoryListViewController {}
 
 // MARK: - Private Methods
-
-extension GitHubRepositoryListViewController {
-    private func initIndicator() {
-        activityIndicatorView.center = view.center
-        activityIndicatorView.style = .large
-        activityIndicatorView.color = .systemGray
-        view.addSubview(activityIndicatorView)
-    }
-
-    private func startIndicator() {
-        DispatchQueue.main.async {
-            self.activityIndicatorView.startAnimating()
-        }
-    }
-
-    private func stopIndicator() {
-        DispatchQueue.main.async {
-            self.activityIndicatorView.stopAnimating()
-        }
-    }
-}
 
 // MARK: - Public Methods
 
@@ -95,21 +70,12 @@ extension GitHubRepositoryListViewController: GitHubRepositoryListView {
     }
 
     func openSafariView(url: String) {
-        guard let url = URL(string: url) else { return }
-        let vc = SFSafariViewController(url: url)
-        present(vc, animated: true, completion: nil)
+        presentSafariView(url: url)
     }
 
     func showErrorDialog() {
         stopIndicator()
-        let alert = UIAlertController(title: "情報の取得に失敗しました", message: "前の画面で再度検索してください。", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) { _ in
-            self.dismiss(animated: true, completion: nil)
-            self.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(ok)
-
-        present(alert, animated: true, completion: nil)
+        showErrorDialog(title: R.string.localizable.common_error_alert_title(), message: R.string.localizable.common_error_alert_message())
     }
 }
 
