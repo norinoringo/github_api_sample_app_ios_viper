@@ -35,10 +35,11 @@ class GitHubUserListPresenterImpl: GitHubUserListPresenter {
     private func fetchGitHubUserList() {
         let input = FetchGitHubUserListUseCaseInput(accessToken: accessToken)
         fetchGitHubUserListUseCase.fetchGitHubUserList(input: input)
-            .then { result in
+            .then { [weak self] result in
                 log.debug("\(result)")
-                self.view.reloadView(githubUserList: result.gitHubUerList)
-            }.catch { _ in
+                self?.view.reloadView(githubUserList: result.gitHubUerList)
+            }.catch { [weak self] _ in
+                self?.view.showErrorDialog()
             }
     }
 }

@@ -4,9 +4,10 @@ import UIKit
 protocol GitHubUserListView {
     func initView()
     func reloadView(githubUserList: [GitHubUser])
+    func showErrorDialog()
 }
 
-class GitHubUserListViewController: UIViewController {
+class GitHubUserListViewController: BaseViewController {
     // MARK: - Constants
 
     private let tableView = UITableView()
@@ -20,6 +21,7 @@ class GitHubUserListViewController: UIViewController {
     var accessToken: String = ""
     var githubUserList: [GitHubUser] = [] {
         didSet {
+            stopIndicator()
             tableView.reloadData()
         }
     }
@@ -58,6 +60,9 @@ extension GitHubUserListViewController: GitHubUserListView {
         tableView.dataSource = self
         tableView.register(GitHubUserCell.self, forCellReuseIdentifier: "githubUserCell")
         view.addSubview(tableView)
+
+        initIndicator()
+        startIndicator()
     }
 
     func reloadView(githubUserList: [GitHubUser]) {
@@ -69,6 +74,11 @@ extension GitHubUserListViewController: GitHubUserListView {
             // reloadData時にdelayをかけないとスクロールインジケーターが表示されなかった
             self.tableView.flashScrollIndicators()
         }
+    }
+
+    func showErrorDialog() {
+        stopIndicator()
+        showErrorDialog(title: R.string.localizable.common_error_alert_title(), message: R.string.localizable.common_error_alert_message())
     }
 }
 
