@@ -21,6 +21,7 @@ class GitHubUserListViewController: BaseViewController {
     var accessToken: String = ""
     var githubUserList: [GitHubUser] = [] {
         didSet {
+            stopIndicator()
             tableView.reloadData()
         }
     }
@@ -59,6 +60,9 @@ extension GitHubUserListViewController: GitHubUserListView {
         tableView.dataSource = self
         tableView.register(GitHubUserCell.self, forCellReuseIdentifier: "githubUserCell")
         view.addSubview(tableView)
+
+        initIndicator()
+        startIndicator()
     }
 
     func reloadView(githubUserList: [GitHubUser]) {
@@ -73,6 +77,7 @@ extension GitHubUserListViewController: GitHubUserListView {
     }
 
     func showErrorDialog() {
+        stopIndicator()
         showErrorDialog(title: R.string.localizable.common_error_alert_title(), message: R.string.localizable.common_error_alert_message())
     }
 }
