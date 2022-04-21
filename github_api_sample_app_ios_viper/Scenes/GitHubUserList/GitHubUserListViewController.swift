@@ -4,9 +4,10 @@ import UIKit
 protocol GitHubUserListView {
     func initView()
     func reloadView(githubUserList: [GitHubUser])
+    func showErrorDialog()
 }
 
-class GitHubUserListViewController: UIViewController {
+class GitHubUserListViewController: BaseViewController {
     // MARK: - Constants
 
     private let tableView = UITableView()
@@ -69,6 +70,10 @@ extension GitHubUserListViewController: GitHubUserListView {
             // reloadData時にdelayをかけないとスクロールインジケーターが表示されなかった
             self.tableView.flashScrollIndicators()
         }
+    }
+
+    func showErrorDialog() {
+        showErrorDialog(title: R.string.localizable.common_error_alert_title(), message: R.string.localizable.common_error_alert_message())
     }
 }
 
