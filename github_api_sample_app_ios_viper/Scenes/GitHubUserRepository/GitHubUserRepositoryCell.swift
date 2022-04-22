@@ -66,6 +66,7 @@ extension GitHubUserRepositoryCell {
         // skeltonを非表示にしたときに位置が大きくずれるのでtopAnchorから16ptの制約をつけた
         repositoryNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: upperLabelMargin).isActive = true
         repositoryNameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: baseMargin).isActive = true
+        repositoryNameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -baseMargin).isActive = true
         repositoryNameLabel.isSkeletonable = true
         // UIパーツのwidthを設定しないとskeltonが表示されないので対応した
         let width = frame.width - repositoryNameLabel.frame.minX - baseMargin
@@ -76,6 +77,7 @@ extension GitHubUserRepositoryCell {
         // skeltonを非表示にしたときに位置が大きくずれるのでtopAnchorから16ptの制約をつけた
         programingLanguageLabel.topAnchor.constraint(equalTo: repositoryNameLabel.bottomAnchor, constant: upperLabelMargin).isActive = true
         programingLanguageLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: baseMargin).isActive = true
+        programingLanguageLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -baseMargin).isActive = true
         programingLanguageLabel.isSkeletonable = true
         // UIパーツのwidthを設定しないとskeltonが表示されないので対応した
         let width = frame.width - programingLanguageLabel.frame.minX - baseMargin
@@ -86,6 +88,7 @@ extension GitHubUserRepositoryCell {
         // skeltonを非表示にしたときに位置が大きくずれるのでtopAnchorから16ptの制約をつけた
         starCountLabel.topAnchor.constraint(equalTo: programingLanguageLabel.bottomAnchor, constant: upperLabelMargin).isActive = true
         starCountLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: baseMargin).isActive = true
+        starCountLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -baseMargin).isActive = true
         starCountLabel.isSkeletonable = true
         // UIパーツのwidthを設定しないとskeltonが表示されないので対応した
         let width = frame.width - starCountLabel.frame.minX - baseMargin
@@ -96,6 +99,7 @@ extension GitHubUserRepositoryCell {
         // skeltonを非表示にしたときに位置が大きくずれるのでtopAnchorから16ptの制約をつけた
         repositoryDetailLabel.topAnchor.constraint(equalTo: starCountLabel.bottomAnchor, constant: upperLabelMargin).isActive = true
         repositoryDetailLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: baseMargin).isActive = true
+        repositoryDetailLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -baseMargin).isActive = true
         let repositoryDetailLabelBottomAnchor = repositoryDetailLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -baseMargin)
         repositoryDetailLabelBottomAnchor.priority = .defaultLow
         repositoryDetailLabelBottomAnchor.isActive = true
@@ -104,7 +108,8 @@ extension GitHubUserRepositoryCell {
         let width = frame.width - repositoryDetailLabel.frame.minX - baseMargin
         repositoryDetailLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
 
-        repositoryDetailLabel.numberOfLines = 0
+        repositoryDetailLabel.numberOfLines = 2
+        repositoryDetailLabel.lineBreakMode = .byTruncatingTail
     }
 
     private func createUserRepositoryCell(githubUserRepository: GitHubUserRepositry) {
