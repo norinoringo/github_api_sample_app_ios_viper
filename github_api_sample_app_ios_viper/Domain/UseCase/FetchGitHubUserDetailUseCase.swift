@@ -17,7 +17,7 @@ class FetchGitHubUserDetailUseCase {
         self.repository = repository
     }
 
-    func fetchGitHubUserList(input: FetchGitHubUserDetailUseCaseInput) -> Promise<FetchGitHubUserDetailUseCaseOutput> {
+    func fetchGitHubUserDetail(input: FetchGitHubUserDetailUseCaseInput) -> Promise<FetchGitHubUserDetailUseCaseOutput> {
         return Promise<FetchGitHubUserDetailUseCaseOutput>(on: .global(qos: .background)) { fullfill, reject in
             self.repository.fetchGitHubUserDetail(input: input) { result in
                 DispatchQueue.main.async {

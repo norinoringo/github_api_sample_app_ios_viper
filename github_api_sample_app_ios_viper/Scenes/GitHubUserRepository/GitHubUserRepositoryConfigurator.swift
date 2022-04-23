@@ -11,7 +11,7 @@ class GitHubUserRepositoryConfiguratorImpl: GitHubUserRepositoryConfigurator {
         let presenter = GitHubUserRepositoryPresenterImpl(view: dependency,
                                                           router: router,
                                                           fetchGitHubUserDetailUseCase: FetchGitHubUserDetailUseCase(repository: fetchGitHubAPIClientRepository),
-                                                          fetchGitHubUserRepositoryUseCase: FetchGitHubUserRepositoryUseCase(repository: fetchGitHubAPIClientRepository))
+                                                          fetchGitHubUserRepositoryUseCase: FetchGitHubUserRepositoryListUseCase(repository: fetchGitHubAPIClientRepository))
         dependency.presenter = presenter
     }
 }
