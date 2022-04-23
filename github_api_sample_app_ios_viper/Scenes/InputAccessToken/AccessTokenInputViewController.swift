@@ -5,7 +5,7 @@ protocol AccessTokenInputView {
     func initView()
 }
 
-class AccessTokenInputViewController: UIViewController {
+class AccessTokenInputViewController: BaseViewController {
     // MARK: - Constants
 
     let headerLabel = UILabel()

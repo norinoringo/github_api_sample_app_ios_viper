@@ -215,6 +215,62 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
+  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
+  struct string {
+    /// This `R.string.localizable` struct is generated, and contains static references to 3 localization keys.
+    struct localizable {
+      /// Value: OK
+      static let common_error_alert_button_title = Rswift.StringResource(key: "common_error_alert_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 前の画面で再度検索してください。
+      static let common_error_alert_message = Rswift.StringResource(key: "common_error_alert_message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 情報の取得に失敗しました
+      static let common_error_alert_title = Rswift.StringResource(key: "common_error_alert_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+
+      /// Value: OK
+      static func common_error_alert_button_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("common_error_alert_button_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "common_error_alert_button_title"
+        }
+
+        return NSLocalizedString("common_error_alert_button_title", bundle: bundle, comment: "")
+      }
+
+      /// Value: 前の画面で再度検索してください。
+      static func common_error_alert_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("common_error_alert_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "common_error_alert_message"
+        }
+
+        return NSLocalizedString("common_error_alert_message", bundle: bundle, comment: "")
+      }
+
+      /// Value: 情報の取得に失敗しました
+      static func common_error_alert_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("common_error_alert_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "common_error_alert_title"
+        }
+
+        return NSLocalizedString("common_error_alert_title", bundle: bundle, comment: "")
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
       try _R.validate()

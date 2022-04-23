@@ -20,13 +20,28 @@
                ReferencedContainer = "container:github_api_sample_app_ios_viper.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "862BF87F27E3FDE60056A45B"
+               BuildableName = "github_api_sample_app_ios_viperUITests.xctest"
+               BlueprintName = "github_api_sample_app_ios_viperUITests"
+               ReferencedContainer = "container:github_api_sample_app_ios_viper.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -35,16 +50,6 @@
                BlueprintIdentifier = "862BF87527E3FDE60056A45B"
                BuildableName = "github_api_sample_app_ios_viperTests.xctest"
                BlueprintName = "github_api_sample_app_ios_viperTests"
-               ReferencedContainer = "container:github_api_sample_app_ios_viper.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "862BF87F27E3FDE60056A45B"
-               BuildableName = "github_api_sample_app_ios_viperUITests.xctest"
-               BlueprintName = "github_api_sample_app_ios_viperUITests"
                ReferencedContainer = "container:github_api_sample_app_ios_viper.xcodeproj">
             </BuildableReference>
          </TestableReference>

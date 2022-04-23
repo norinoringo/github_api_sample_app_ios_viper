@@ -18,14 +18,13 @@ class FetchGitHubRepositoryListUseCase {
 
     func fetchGitHubRepository(input: FetchGitHubRepositoryListUseCaseInput) -> Promise<FetchGitHubRepositoryListUseCaseOutput> {
         return Promise<FetchGitHubRepositoryListUseCaseOutput>(on: .global(qos: .background)) { fullfill, reject in
-            self.repository.fetchGitHubRepository(input: input) { result, error in
+            self.repository.fetchGitHubRepository(input: input) { result in
                 DispatchQueue.main.async {
-                    if let error = error {
+                    switch result {
+                    case let .failure(error):
                         reject(error)
-                    } else if let result = result {
+                    case let .success(result):
                         fullfill(FetchGitHubRepositoryListUseCaseOutput(githubRepository: result))
-                    } else {
-                        reject(GitHubClientError.unkownError)
                     }
                 }
             }

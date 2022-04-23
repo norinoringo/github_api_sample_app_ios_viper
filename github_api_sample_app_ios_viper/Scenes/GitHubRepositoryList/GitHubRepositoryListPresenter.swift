@@ -31,12 +31,12 @@ class GitHubRepositoryListPresenterImpl: GitHubRepositoryListPresenter {
     private func fetchGitHubRepository(searchKeyword: String?) {
         let input = FetchGitHubRepositoryListUseCaseInput(searchKeyword: searchKeyword)
         fetchGitHubRepositoryUseCase.fetchGitHubRepository(input: input)
-            .then { result in
+            .then { [weak self] result in
                 log.debug("\(result)")
                 let githubRepository: [GitHubUserRepositry] = result.githubRepository.items
-                self.view.updateGitHubRepository(repository: githubRepository)
-            }.catch { _ in
-                self.view.showErrorDialog()
+                self?.view.updateGitHubRepository(repository: githubRepository)
+            }.catch { [weak self] _ in
+                self?.view.showErrorDialog()
             }
     }
 }

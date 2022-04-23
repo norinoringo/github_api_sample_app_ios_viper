@@ -1,1 +1,4 @@
-
+// 共通
+"common_error_alert_title" = "情報の取得に失敗しました";
+"common_error_alert_message" = "前の画面で再度検索してください。";
+"common_error_alert_button_title" = "OK";

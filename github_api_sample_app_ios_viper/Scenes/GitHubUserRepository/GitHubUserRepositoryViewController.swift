@@ -7,9 +7,10 @@ protocol GitHubUserRepositoryView {
     func updateUserDetailView(userDetail: GitHubUserDetail)
     func updateUserRepository(userRepository: [GitHubUserRepositry])
     func openSafariView(url: String)
+    func showErrorDialog()
 }
 
-class GitHubUserRepositoryViewController: UIViewController {
+class GitHubUserRepositoryViewController: BaseViewController {
     // MARK: - Constants
 
     private let sectionTitle = ["ユーザーリポジトリ"]
@@ -28,6 +29,7 @@ class GitHubUserRepositoryViewController: UIViewController {
 
     var githubUserRepository: [GitHubUserRepositry] = [] {
         didSet {
+            stopIndicator()
             userRepositoryTableView.reloadData()
         }
     }
@@ -64,6 +66,9 @@ extension GitHubUserRepositoryViewController: GitHubUserRepositoryView {
         userRepositoryTableView.delegate = self
         userRepositoryTableView.dataSource = self
         userRepositoryTableView.register(GitHubUserRepositoryCell.self, forCellReuseIdentifier: "githubUserCell")
+
+        initIndicator()
+        startIndicator()
     }
 
     func updateUserDetailView(userDetail: GitHubUserDetail) {
@@ -75,9 +80,12 @@ extension GitHubUserRepositoryViewController: GitHubUserRepositoryView {
     }
 
     func openSafariView(url: String) {
-        guard let url = URL(string: url) else { return }
-        let vc = SFSafariViewController(url: url)
-        present(vc, animated: true, completion: nil)
+        presentSafariView(url: url)
+    }
+
+    func showErrorDialog() {
+        stopIndicator()
+        showErrorDialog(title: R.string.localizable.common_error_alert_title(), message: R.string.localizable.common_error_alert_message())
     }
 }
 

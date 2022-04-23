@@ -19,6 +19,7 @@ class GitHubAPICell: UITableViewCell {
         addSubViewUIParts()
         // すべてのパーツをaddSubviewしてから制約をつけないとクラッシュする
         initUIParts()
+        accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
     }
 
     required init?(coder aDecoder: NSCoder) {
