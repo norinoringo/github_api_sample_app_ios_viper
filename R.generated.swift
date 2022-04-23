@@ -89,16 +89,36 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 7 storyboards.
   struct storyboard {
+    /// Storyboard `AcessTokenInput`.
+    static let acessTokenInput = _R.storyboard.acessTokenInput()
+    /// Storyboard `GitHubRepositoryList`.
+    static let gitHubRepositoryList = _R.storyboard.gitHubRepositoryList()
     /// Storyboard `GitHubUserList`.
     static let gitHubUserList = _R.storyboard.gitHubUserList()
     /// Storyboard `GitHubUserRepository`.
     static let gitHubUserRepository = _R.storyboard.gitHubUserRepository()
+    /// Storyboard `InputSearchRepositoryKeyword`.
+    static let inputSearchRepositoryKeyword = _R.storyboard.inputSearchRepositoryKeyword()
     /// Storyboard `Splash`.
     static let splash = _R.storyboard.splash()
     /// Storyboard `Top`.
     static let top = _R.storyboard.top()
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "AcessTokenInput", bundle: ...)`
+    static func acessTokenInput(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.acessTokenInput)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "GitHubRepositoryList", bundle: ...)`
+    static func gitHubRepositoryList(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.gitHubRepositoryList)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIStoryboard(name: "GitHubUserList", bundle: ...)`
@@ -111,6 +131,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "GitHubUserRepository", bundle: ...)`
     static func gitHubUserRepository(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.gitHubUserRepository)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "InputSearchRepositoryKeyword", bundle: ...)`
+    static func inputSearchRepositoryKeyword(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.inputSearchRepositoryKeyword)
     }
     #endif
 
@@ -188,6 +215,62 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
+  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
+  struct string {
+    /// This `R.string.localizable` struct is generated, and contains static references to 3 localization keys.
+    struct localizable {
+      /// Value: OK
+      static let common_error_alert_button_title = Rswift.StringResource(key: "common_error_alert_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 前の画面で再度検索してください。
+      static let common_error_alert_message = Rswift.StringResource(key: "common_error_alert_message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 情報の取得に失敗しました
+      static let common_error_alert_title = Rswift.StringResource(key: "common_error_alert_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+
+      /// Value: OK
+      static func common_error_alert_button_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("common_error_alert_button_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "common_error_alert_button_title"
+        }
+
+        return NSLocalizedString("common_error_alert_button_title", bundle: bundle, comment: "")
+      }
+
+      /// Value: 前の画面で再度検索してください。
+      static func common_error_alert_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("common_error_alert_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "common_error_alert_message"
+        }
+
+        return NSLocalizedString("common_error_alert_message", bundle: bundle, comment: "")
+      }
+
+      /// Value: 情報の取得に失敗しました
+      static func common_error_alert_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("common_error_alert_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "common_error_alert_title"
+        }
+
+        return NSLocalizedString("common_error_alert_title", bundle: bundle, comment: "")
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
       try _R.validate()
@@ -212,10 +295,19 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       #if os(iOS) || os(tvOS)
+      try acessTokenInput.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
+      try gitHubRepositoryList.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try gitHubUserList.validate()
       #endif
       #if os(iOS) || os(tvOS)
       try gitHubUserRepository.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
+      try inputSearchRepositoryKeyword.validate()
       #endif
       #if os(iOS) || os(tvOS)
       try splash.validate()
@@ -224,6 +316,38 @@ struct _R: Rswift.Validatable {
       try top.validate()
       #endif
     }
+
+    #if os(iOS) || os(tvOS)
+    struct acessTokenInput: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = AccessTokenInputViewController
+
+      let bundle = R.hostingBundle
+      let name = "AcessTokenInput"
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct gitHubRepositoryList: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = GitHubRepositoryListViewController
+
+      let bundle = R.hostingBundle
+      let name = "GitHubRepositoryList"
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     struct gitHubUserList: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -247,6 +371,22 @@ struct _R: Rswift.Validatable {
 
       let bundle = R.hostingBundle
       let name = "GitHubUserRepository"
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct inputSearchRepositoryKeyword: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = InputSearchRepositoryKeywordViewController
+
+      let bundle = R.hostingBundle
+      let name = "InputSearchRepositoryKeyword"
 
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
