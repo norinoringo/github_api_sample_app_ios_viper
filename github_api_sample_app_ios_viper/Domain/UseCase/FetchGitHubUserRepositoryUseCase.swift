@@ -7,7 +7,7 @@ struct FetchGitHubUserRepositoryUseCaseInput {
 }
 
 struct FetchGitHubUserRepositoryUseCaseOutput {
-    let gitHubUerRepository: [GitHubUserRepositry]
+    let gitHubUserRepository: [GitHubUserRepositry]
 }
 
 class FetchGitHubUserRepositoryUseCase {
@@ -17,7 +17,7 @@ class FetchGitHubUserRepositoryUseCase {
         self.repository = repository
     }
 
-    func fetchGitHubUserList(input: FetchGitHubUserRepositoryUseCaseInput) -> Promise<FetchGitHubUserRepositoryUseCaseOutput> {
+    func fetchGitHubUserRepositoryList(input: FetchGitHubUserRepositoryUseCaseInput) -> Promise<FetchGitHubUserRepositoryUseCaseOutput> {
         return Promise<FetchGitHubUserRepositoryUseCaseOutput>(on: .global(qos: .background)) { fullfill, reject in
             self.repository.fetchGitHubUserRepository(input: input) { result in
                 DispatchQueue.main.async {
@@ -25,7 +25,7 @@ class FetchGitHubUserRepositoryUseCase {
                     case let .failure(error):
                         reject(error)
                     case let .success(result):
-                        fullfill(FetchGitHubUserRepositoryUseCaseOutput(gitHubUerRepository: result))
+                        fullfill(FetchGitHubUserRepositoryUseCaseOutput(gitHubUserRepository: result))
                     }
                 }
             }
