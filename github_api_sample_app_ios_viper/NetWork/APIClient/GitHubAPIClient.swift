@@ -20,7 +20,7 @@ class GitHubAPIClient: FetchGitHubAPIClientRepository {
         doURLSessionTask(req: req, completion: completion)
     }
 
-    func fetchGitHubUserRepository(input: FetchGitHubUserRepositoryUseCaseInput, completion: @escaping (Result<[GitHubUserRepositry], GitHubClientError>) -> Void) {
+    func fetchGitHubUserRepository(input: FetchGitHubUserRepositoryListUseCaseInput, completion: @escaping (Result<[GitHubUserRepositry], GitHubClientError>) -> Void) {
         let userName = input.githubUser.login
         var req = URLRequest(url: URL(string: "https://api.github.com/users/\(userName)/repos")!)
         req.addValue("token \(input.accessToken)", forHTTPHeaderField: "Authorization")

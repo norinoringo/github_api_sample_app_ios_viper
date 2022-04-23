@@ -9,12 +9,12 @@ class GitHubUserRepositoryPresenterImpl: GitHubUserRepositoryPresenter {
     let view: GitHubUserRepositoryView
     let router: GitHubUserRepositoryRouter
     let fetchGitHubUserDetailUseCase: FetchGitHubUserDetailUseCase
-    let fetchGitHubUserRepositoryUseCase: FetchGitHubUserRepositoryUseCase
+    let fetchGitHubUserRepositoryUseCase: FetchGitHubUserRepositoryListUseCase
 
     init(view: GitHubUserRepositoryViewController,
          router: GitHubUserRepositoryRouter,
          fetchGitHubUserDetailUseCase: FetchGitHubUserDetailUseCase,
-         fetchGitHubUserRepositoryUseCase: FetchGitHubUserRepositoryUseCase)
+         fetchGitHubUserRepositoryUseCase: FetchGitHubUserRepositoryListUseCase)
     {
         self.view = view
         self.router = router
@@ -34,11 +34,11 @@ class GitHubUserRepositoryPresenterImpl: GitHubUserRepositoryPresenter {
 
     private func fetchGitHubUserDetailUserRepository(accessToken: String, githubUser: GitHubUser) {
         let input = FetchGitHubUserDetailUseCaseInput(accessToken: accessToken, githubUser: githubUser)
-        fetchGitHubUserDetailUseCase.fetchGitHubUserList(input: input)
+        fetchGitHubUserDetailUseCase.fetchGitHubUserDetail(input: input)
             .then { result in
                 log.debug("\(result)")
                 self.view.updateUserDetailView(userDetail: result.gitHubUerDetail)
-                let repositoryInput = FetchGitHubUserRepositoryUseCaseInput(accessToken: accessToken, githubUser: githubUser)
+                let repositoryInput = FetchGitHubUserRepositoryListUseCaseInput(accessToken: accessToken, githubUser: githubUser)
                 self.fetchGitHubUserRepositoryUseCase.fetchGitHubUserRepositoryList(input: repositoryInput)
                     .then { [weak self] result in
                         log.debug("\(result)")

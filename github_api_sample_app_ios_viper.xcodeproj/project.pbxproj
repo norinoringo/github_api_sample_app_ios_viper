@@ -59,7 +59,7 @@
 		86A5074F27EB4C79000A13F6 /* GitHubUserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5074E27EB4C79000A13F6 /* GitHubUserDetailView.swift */; };
 		86A5075127EB5409000A13F6 /* GitHubUserRepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5075027EB5409000A13F6 /* GitHubUserRepositoryCell.swift */; };
 		86A5075327EB5BDB000A13F6 /* FetchGitHubUserDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5075227EB5BDB000A13F6 /* FetchGitHubUserDetailUseCase.swift */; };
-		86A5075B27EB5E94000A13F6 /* FetchGitHubUserRepositoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5075A27EB5E94000A13F6 /* FetchGitHubUserRepositoryUseCase.swift */; };
+		86A5075B27EB5E94000A13F6 /* FetchGitHubUserRepositoryListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5075A27EB5E94000A13F6 /* FetchGitHubUserRepositoryListUseCase.swift */; };
 		86AAC73627FD14EA00EE6FEC /* Top.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86AAC73527FD14EA00EE6FEC /* Top.storyboard */; };
 		86AAC73827FD1E2400EE6FEC /* GitHubAPICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AAC73727FD1E2400EE6FEC /* GitHubAPICell.swift */; };
 		86AAC73A27FD2C0800EE6FEC /* InputSearchRepositoryKeyword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86AAC73927FD2C0800EE6FEC /* InputSearchRepositoryKeyword.storyboard */; };
@@ -163,7 +163,7 @@
 		86A5074E27EB4C79000A13F6 /* GitHubUserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserDetailView.swift; sourceTree = "<group>"; };
 		86A5075027EB5409000A13F6 /* GitHubUserRepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserRepositoryCell.swift; sourceTree = "<group>"; };
 		86A5075227EB5BDB000A13F6 /* FetchGitHubUserDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGitHubUserDetailUseCase.swift; sourceTree = "<group>"; };
-		86A5075A27EB5E94000A13F6 /* FetchGitHubUserRepositoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGitHubUserRepositoryUseCase.swift; sourceTree = "<group>"; };
+		86A5075A27EB5E94000A13F6 /* FetchGitHubUserRepositoryListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGitHubUserRepositoryListUseCase.swift; sourceTree = "<group>"; };
 		86AAC73527FD14EA00EE6FEC /* Top.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Top.storyboard; sourceTree = "<group>"; };
 		86AAC73727FD1E2400EE6FEC /* GitHubAPICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPICell.swift; sourceTree = "<group>"; };
 		86AAC73927FD2C0800EE6FEC /* InputSearchRepositoryKeyword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InputSearchRepositoryKeyword.storyboard; sourceTree = "<group>"; };
@@ -430,7 +430,7 @@
 				86AAC74127FD5DB400EE6FEC /* FetchGitHubRepositoryListUseCase.swift */,
 				86A5075227EB5BDB000A13F6 /* FetchGitHubUserDetailUseCase.swift */,
 				862BF8C827EAF3690056A45B /* FetchGitHubUserListUseCase.swift */,
-				86A5075A27EB5E94000A13F6 /* FetchGitHubUserRepositoryUseCase.swift */,
+				86A5075A27EB5E94000A13F6 /* FetchGitHubUserRepositoryListUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -909,7 +909,7 @@
 				86AAC7442806956B00EE6FEC /* HTTPClient.swift in Sources */,
 				862BF8A727E75ADA0056A45B /* R.generated.swift in Sources */,
 				01E7EE0438C2B924B31A71E3 /* SplashViewController.swift in Sources */,
-				86A5075B27EB5E94000A13F6 /* FetchGitHubUserRepositoryUseCase.swift in Sources */,
+				86A5075B27EB5E94000A13F6 /* FetchGitHubUserRepositoryListUseCase.swift in Sources */,
 				E607FE83EE68F41911C6FF1D /* SplashPresenter.swift in Sources */,
 				80231ADD70E013831C0F0E91 /* SplashRouter.swift in Sources */,
 				2B8B64DCF1A0800FD7151BCD /* SplashConfigurator.swift in Sources */,

@@ -2,13 +2,13 @@
 import XCTest
 
 class FetchGitHubUserRepositoryUseCaseTest: XCTestCase {
-    var usecase: FetchGitHubUserRepositoryUseCase!
+    var usecase: FetchGitHubUserRepositoryListUseCase!
     var stubClient: StubAPIClient!
 
     override func setUp() {
         super.setUp()
         stubClient = StubAPIClient()
-        usecase = FetchGitHubUserRepositoryUseCase(repository: GitHubAPIClient(httpClient: stubClient))
+        usecase = FetchGitHubUserRepositoryListUseCase(repository: GitHubAPIClient(httpClient: stubClient))
     }
 
     private func makeHTTPClientResult(statusCode: Int, json: String) -> Result<(Data, HTTPURLResponse), Error> {
@@ -47,8 +47,8 @@ class FetchGitHubUserRepositoryUseCaseTest: XCTestCase {
 extension FetchGitHubUserRepositoryUseCaseTest {
     func testFetchGitHubUserRepositoryListWirhSucesss() {
         let apiExpectation = expectation(description: "wait for finish")
-        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
-                                                          githubUser: makeGitHubUser())
+        let input = FetchGitHubUserRepositoryListUseCaseInput(accessToken: "",
+                                                              githubUser: makeGitHubUser())
         stubClient.result = makeHTTPClientResult(statusCode: 200,
                                                  json: GitHubUserRepositoryTest.exampleJson)
         usecase.fetchGitHubUserRepositoryList(input: input).then { result in
@@ -67,8 +67,8 @@ extension FetchGitHubUserRepositoryUseCaseTest {
 
     func testFetchGitHubUserRepositoryListWirhFaile() {
         let apiExpectation = expectation(description: "wait for finish")
-        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
-                                                          githubUser: makeGitHubUser())
+        let input = FetchGitHubUserRepositoryListUseCaseInput(accessToken: "",
+                                                              githubUser: makeGitHubUser())
         stubClient.result = makeHTTPClientResult(statusCode: 200,
                                                  json: "")
         usecase.fetchGitHubUserRepositoryList(input: input).then { result in

@@ -281,8 +281,8 @@ extension GitHubAPIClientTest {
         let apiExpectation = expectation(description: "wait for finish")
         stubClient.result = makeHTTPClientResult(statusCode: 200,
                                                  json: GitHubUserRepositoryTest.exampleJson)
-        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
-                                                          githubUser: makeGitHubUser())
+        let input = FetchGitHubUserRepositoryListUseCaseInput(accessToken: "",
+                                                              githubUser: makeGitHubUser())
         githubAPIClient.fetchGitHubUserRepository(input: input) { result in
             switch result {
             case let .success(response):
@@ -303,8 +303,8 @@ extension GitHubAPIClientTest {
     func testFetchGitHubUserRepositoryWithFailuerByConnectionError() {
         let apiExpectation = expectation(description: "wait for finish")
         stubClient.result = .failure(URLError(.cannotConnectToHost))
-        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
-                                                          githubUser: makeGitHubUser())
+        let input = FetchGitHubUserRepositoryListUseCaseInput(accessToken: "",
+                                                              githubUser: makeGitHubUser())
         githubAPIClient.fetchGitHubUserRepository(input: input) { result in
             switch result {
             case .failure(.connectionError):
@@ -321,8 +321,8 @@ extension GitHubAPIClientTest {
         let apiExpectation = expectation(description: "wait for finish")
         stubClient.result = makeHTTPClientResult(statusCode: 200,
                                                  json: "{}")
-        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
-                                                          githubUser: makeGitHubUser())
+        let input = FetchGitHubUserRepositoryListUseCaseInput(accessToken: "",
+                                                              githubUser: makeGitHubUser())
         githubAPIClient.fetchGitHubUserRepository(input: input) { result in
             switch result {
             case .failure(.responseParseError):
@@ -339,8 +339,8 @@ extension GitHubAPIClientTest {
         let apiExpectation = expectation(description: "wait for finish")
         stubClient.result = makeHTTPClientResult(statusCode: 400,
                                                  json: GitHubAPIErrorTest.exampleJSON)
-        let input = FetchGitHubUserRepositoryUseCaseInput(accessToken: "",
-                                                          githubUser: makeGitHubUser())
+        let input = FetchGitHubUserRepositoryListUseCaseInput(accessToken: "",
+                                                              githubUser: makeGitHubUser())
         githubAPIClient.fetchGitHubUserRepository(input: input) { result in
             switch result {
             case let .failure(.apiError(response)):

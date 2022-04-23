@@ -51,7 +51,7 @@ extension FetchGitHubUserDetailUseCaseTest {
                                                  json: GitHubUserDetailTest.exampleJson)
         let input = FetchGitHubUserDetailUseCaseInput(accessToken: "test",
                                                       githubUser: makeGitHubUser())
-        usecase.fetchGitHubUserList(input: input).then { result in
+        usecase.fetchGitHubUserDetail(input: input).then { result in
             XCTAssertEqual(result.gitHubUerDetail.login, "mojombo")
             XCTAssertEqual(result.gitHubUerDetail.avatarUrl, "https://avatars.githubusercontent.com/u/1?v=4")
             XCTAssertEqual(result.gitHubUerDetail.userFullName, "Tom Preston-Werner")
