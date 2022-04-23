@@ -45,7 +45,7 @@ class FetchGitHubUserDetailUseCaseTest: XCTestCase {
 }
 
 extension FetchGitHubUserDetailUseCaseTest {
-    func testFetchGitHubUserList() {
+    func testFetchGitHubUserListWithSuccess() {
         let apiExpectaion = expectation(description: "wait for finish")
         stubClient.result = makeHTTPClientResult(statusCode: 200,
                                                  json: GitHubUserDetailTest.exampleJson)
@@ -60,6 +60,21 @@ extension FetchGitHubUserDetailUseCaseTest {
             apiExpectaion.fulfill()
         }.catch { error in
             XCTFail("unexpectaed result:\(error)")
+            apiExpectaion.fulfill()
+        }
+        wait(for: [apiExpectaion], timeout: 3)
+    }
+
+    func testFetchGitHubUserListWithFaile() {
+        let apiExpectaion = expectation(description: "wait for finish")
+        stubClient.result = makeHTTPClientResult(statusCode: 200,
+                                                 json: "")
+        let input = FetchGitHubUserDetailUseCaseInput(accessToken: "test",
+                                                      githubUser: makeGitHubUser())
+        usecase.fetchGitHubUserDetail(input: input).then { result in
+            XCTFail("unexpectaed result:\(result)")
+            apiExpectaion.fulfill()
+        }.catch { _ in
             apiExpectaion.fulfill()
         }
         wait(for: [apiExpectaion], timeout: 3)

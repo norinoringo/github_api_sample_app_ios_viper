@@ -23,7 +23,7 @@ class FetchGitHubRepositoryListUseCaseTest: XCTestCase {
 }
 
 extension FetchGitHubRepositoryListUseCaseTest {
-    func testFetchGitHubRepository() {
+    func testFetchGitHubRepositoryWithSuccess() {
         let apiExpectaion = expectation(description: "wait for finish")
         stubAPIClient.result = makeHTTPClientResult(statusCode: 200,
                                                     json: GitHubRepositoryTest.exampleJson)
@@ -37,6 +37,20 @@ extension FetchGitHubRepositoryListUseCaseTest {
             apiExpectaion.fulfill()
         }.catch { error in
             XCTFail("unexpected result:\(error)")
+            apiExpectaion.fulfill()
+        }
+        wait(for: [apiExpectaion], timeout: 3)
+    }
+
+    func testFetchGitHubRepositoryWithFaile() {
+        let apiExpectaion = expectation(description: "wait for finish")
+        stubAPIClient.result = makeHTTPClientResult(statusCode: 200,
+                                                    json: "")
+        let input = FetchGitHubRepositoryListUseCaseInput(searchKeyword: "test")
+        fetchGitHubRepositoryListUseCase.fetchGitHubRepository(input: input).then { result in
+            XCTFail("unexpected result:\(result)")
+            apiExpectaion.fulfill()
+        }.catch { _ in
             apiExpectaion.fulfill()
         }
         wait(for: [apiExpectaion], timeout: 3)
